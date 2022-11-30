@@ -1,0 +1,185 @@
+* {
+    font-family: 'Anek Devanagari', sans-serif;
+}
+
+/* Configuracion del Navbar (solamente diseño) */
+
+
+nav {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.content-left a {
+    transition: 0.5s;
+    margin-left: 5px;
+    color: rgb(34, 34, 34);
+}
+
+.content-right a {
+    margin-left: 5px;
+    padding: 2px;
+}
+
+.content-left a:hover {
+    transition: 0.5s;
+    color: rgb(153, 153, 153);
+}
+
+.login {
+    transition: 0.5s;
+    border: 1px solid #691e63;
+    color: #691e63;
+    border-radius: 5px;
+}
+
+.login:hover {
+    transition: 0.5s;
+    color: #42133e;
+}
+
+.register {
+    transition: 0.5s;
+    background-color: #691e63;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.register:hover {
+    transition: 0.5s;
+    background-color: #42133e;
+}
+
+/* FALTA TODAVIA Entrada: contiene titulo, descripcion, imagenes, etc. (solo diseño) */
+
+.titleEntrada {
+    text-align: center;
+    color: #691e63;
+    font-size: 85px;
+}
+
+.descriptionInfo {
+    display: flex;
+    justify-content: center;
+}
+
+/* Login */
+
+.formularioLogin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 15px;
+}
+
+.formLoginAndDatos {
+    margin-top: 60px;
+}
+
+.titleFormLogin {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+.datos {
+    display: flex;
+    flex-direction: column;
+    width: 180%;
+}
+
+.datos input {
+    transition: 0.5s;
+    padding: 3.5px;
+    font-size: 17px;
+}
+
+.datos label {
+    margin-top: 10px;
+}
+
+.lostPasswordText {
+    font-size: 11px;
+}
+
+.submit {
+    transition: 0.5s;
+    background-color: #691e63;
+    border: none;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.submit:hover {
+    transition: 0.5s;
+    background-color: #42133e;
+}
+
+.anotherLogin {
+    text-align: center;
+    color: #cccccc;
+}
+
+.alternativeLoginLogos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.imgLogin {
+    position: relative;
+    text-align: center;
+}
+
+.imgSource {
+    width: 450px;
+    height: 610px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.registerImgLogin {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
+.registerImgLogin div:nth-child(1) {
+    padding: 5px;
+    background-color:rgba(245, 245, 245, 0.5);
+    border-radius: 10px;
+}
+
+.registerImgLogin div:nth-child(1) h2 {
+    margin-top: 30px;
+}
+
+.registerLoginPageButton {
+    transition: 0.5s;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000000;
+    background-color:rgba(245, 245, 245, 0.5);
+    padding: 6px;
+    border-radius: 5px;
+    width: 95%;
+}
+
+.registerLoginPageButton:hover {
+    transition: 0.5s;
+    background-color:rgba(224, 224, 224, 0.5);
+}
+
+
+/* FALTAN UN PAR DE COSAS ACA COMO PONER BIEN EN EL CENTRO AL LOGIN */

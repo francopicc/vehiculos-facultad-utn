@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto sobre Gestion Vehicular - Grupo C</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- RECORDAR QUE ESTO ES UNA TEMPLATE NO LA PAGINA COMPLETA -->
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="content-left">
+            <a href="/">Inicio</a>
+            <a href="/acerca">Acerca de</a>
+        </div>
+        <div class="content-right">
+            <a class="login" href="/login">Iniciar Sesion</a>
+            <a class="register" href="/register">Registrarse</a>
+        </div>
+    </nav>
+    <!-- LOGIN -->
+    <div class="formularioLogin">
+        <div class="formLoginAndDatos">
+            <h1 class="titleFormLogin">Iniciar Sesion</h1>
+            <form>
+                <div class="datos">
+                    <label>Correo Electronico:</label>
+                    <input type="text" placeholder="ejemplo@hotmail.com">
+                    <label>Contraseña:</label>
+                    <input type="password" placeholder="">
+                    <p class="lostPasswordText">Olvidaste tu contraseña? Recuperala aqui.</p>
+                    <button class="submit">Continuar</button>
+                    <h3 class="anotherLogin">Iniciar sesion con:</h3>
+                    <div class="alternativeLoginLogos">
+                        <a href="">
+                            <i class="fa-brands fa-facebook-f fa-xl" id="icono"></i>
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-google fa-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="imgLogin">
+            <img src={% static 'login.jpg' %} class="imgSource">
+            <div class="registerImgLogin">
+                <div>
+                    <h2>¿No tienes una cuenta?</h2>
+                    <h4>Registrate ya y vive la experiencia de tus sueños.</h4>
+                </div>
+                <a href="/register" class="registerLoginPageButton">Registrarse</a>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <div class="footer">
+
+    </div>
+    <!-- FONT AWESOME: importa iconos -->
+    <script src="https://kit.fontawesome.com/e80c9c3cc8.js" crossorigin="anonymous"></script>
+</body>
+</html>
