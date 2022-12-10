@@ -121,6 +121,107 @@ nav {
     margin-top: -36px;
 }
 
+.ofertasList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.oferta {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-left: 15px;
+}
+
+.imgInformation {
+    position: relative;
+}
+
+.imgInformation img {
+    border-radius: 15px;
+}
+
+.textOfferImage {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    color: #ffffff;
+    background-color: #691e63;
+    border-radius: 6.5px;
+    padding: 2.5px;
+    width: 30%;
+}
+
+.ofertaInformation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ofertaName h3 {
+    margin-top: -5px;
+    margin-right: 45px;
+}
+
+.ofertaName p {
+    margin-top: -20px;
+    margin-left: 15px;
+    color: #cccccc;
+}
+
+.ofertaRating {
+    display: flex;
+    flex-direction: row;
+    margin-right: 15px;
+}
+
+.ofertaRating i {
+    color: #e5e905;
+}
+
+.ofertaRating p {
+    margin-top: -2px;
+    margin-left: 2.5px;
+    color: #cccccc;
+}
+
+/* PASOS VIAJE */
+
+.pasosFlight {
+    text-align: center;
+}
+
+.pasosFlightTitle {
+    color: #691e63;
+    margin-top: 2em;
+}
+
+.pasosFlightDescription {
+    margin-top: -30px;
+}
+
+.explainingPasosFlight {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.explainingPasosFlight h2 {
+    margin-left: 15px;
+    font-size: 5em;
+    color:#691e63;
+}
+
+.explainingPasosFlight h3 {
+    color: #616161;
+    margin-top: 38px;
+    margin-left: 15px;
+}
+
+
 /* Login */
 
 .formularioLogin {
