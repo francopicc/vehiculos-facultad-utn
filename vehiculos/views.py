@@ -11,3 +11,6 @@ def acerca(request):
 
 def login(request):
     return render(request, 'paginas/login.html')
+
+def register(request):
+    return render(request, 'paginas/register.html')

@@ -1,5 +1,15 @@
+
 * {
     font-family: 'Anek Devanagari', sans-serif;
+}
+
+.muted {
+    color: #c7c7c7;
+}
+
+.link {
+    cursor: pointer;
+    color: #20578d;
 }
 
 /* Configuracion del Navbar (solamente diseño) */
@@ -15,7 +25,7 @@ nav {
 
 .content-left a {
     transition: 0.5s;
-    margin-left: 5px;
+    margin-left: 10px;
     color: rgb(34, 34, 34);
 }
 
@@ -61,9 +71,54 @@ nav {
     font-size: 85px;
 }
 
-.descriptionInfo {
-    display: flex;
-    justify-content: center;
+.splashEntrada {
+    font-size: 23px;
+    margin-top: -45px;
+    margin-left: 18em;
+    line-height: 42px;
+}
+
+.splashVioletText {
+    color: #691e63;
+}
+
+.splashEntrada p {
+    font-size: 15px;
+    line-height: 21px;
+    max-width: 210px;
+    margin-top: 15px;
+}
+
+.seeOffer {
+    transition: 0.5s;
+    background-color: #691e63;
+    border: none;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 7px;
+    width: 12%;
+    margin-top: 15px;
+}
+
+.seeOffer:hover {
+    transition: 0.5s;
+    background-color: #42133e;
+}
+
+/* Ofertas (Scroll Home) */
+
+.ofertasExclusivas {
+    text-align: center;
+}
+
+.ofertasTitle {
+    margin-top: 2em;
+    font-size: 37.5px;
+    color: #691e63
+}
+
+.ofertasDescription {
+    margin-top: -36px;
 }
 
 /* Login */
@@ -80,10 +135,11 @@ nav {
 }
 
 .titleFormLogin {
+    font-size: 45px;
     text-align: center;
 }
 
-form {
+.loginForm {
     display: flex;
     justify-content: center;
 }
@@ -92,6 +148,7 @@ form {
     display: flex;
     flex-direction: column;
     width: 180%;
+    margin-top: -35px;
 }
 
 .datos input {
@@ -115,6 +172,7 @@ form {
     color: #ffffff;
     border-radius: 5px;
     padding: 5px;
+    margin-top: 15px;
 }
 
 .submit:hover {
@@ -124,7 +182,7 @@ form {
 
 .anotherLogin {
     text-align: center;
-    color: #cccccc;
+    color: #c7c7c7;;
 }
 
 .alternativeLoginLogos {
@@ -181,5 +239,83 @@ form {
     background-color:rgba(224, 224, 224, 0.5);
 }
 
-
 /* FALTAN UN PAR DE COSAS ACA COMO PONER BIEN EN EL CENTRO AL LOGIN */
+
+/* REGISTER */
+
+.entryRegister {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.entryRegister h1 {
+    margin-top: 70px;
+    font-size: 52px;
+}
+
+.entryRegister h3 {
+    margin-top: -55px;
+}
+
+.registroForm {
+    display: grid;
+    /* grid-template-columns: 15em 15em 15em 15em; */
+    grid-template-columns: repeat(4, 15em);
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.registroForm div:last-child {
+    justify-self: center;
+    grid-column: 1 / span 4;
+    width: 500pxpx;
+}
+
+.dato {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dato input {
+    padding: 3.5px;
+    font-size: 16.5px;
+}
+
+.termsAndButton {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.confirm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.termsAgree {
+    transform: scale(1.2);
+}
+
+.confirm p {
+    margin-top: 5px;
+    margin-left: 2.5px;
+}
+
+.termsAndButton button {
+    transition: 0.5s;
+    background-color: #691e63;
+    border: none;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 8px;
+    width: 25%;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.termsAndButton button:hover {
+    transition: 0.5s;
+    background-color: #42133e;
+}

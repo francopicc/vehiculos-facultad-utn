@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto sobre Gestion Vehicular - Grupo C</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- RECORDAR QUE ESTO ES UNA TEMPLATE NO LA PAGINA COMPLETA -->
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="content-left">
+            <a href="/">Inicio</a>
+            <a href="/acerca">Acerca de</a>
+        </div>
+        <div class="content-right">
+            <a class="login" href="/login">Iniciar Sesion</a>
+            <a class="register" href="/register">Registrarse</a>
+        </div>
+    </nav>
+    <!-- REGISTER -->
+    <div class="entryRegister">
+        <h1>Registrarse</h1>
+        <h3 class="muted">Por favor complete todos los campos.</h3>
+    </div>
+    <div class="registroFormDiv">
+        <form class="registroForm">
+            <div class="dato">
+                <label>Nombre</label>
+                <input type="text" required>
+            </div>
+            <div class="dato">
+                <label>Apellido</label>
+                <input type="text" required>
+            </div>
+            <div class="dato">
+                <label>Fecha de nacimiento</label>
+                <input type="date" required>
+            </div>
+            <div class="dato">
+                <label>Telefono</label>
+                <input type="number" required>
+            </div>
+            <div class="dato">
+                <label>Tipo de documento</label>
+                <input type="text" required>
+            </div>
+            <div class="dato">
+                <label>Numero de documento</label>
+                <input type="number" required>
+            </div>
+            <div class="dato">
+                <label>País</label>
+                <input type="text" required>
+            </div>
+            <div class="dato">
+                <label>Estado/Provincia</label>
+                <input type="text" required>
+            </div>
+            <div class="dato">
+                <label>Calle</label>
+                <input type="text" required>
+            </div>
+            <div class="dato">
+                <label>Altura</label>
+                <input type="text" required>
+            </div>
+            <div class="dato">
+                <label>Ciudad</label>
+                <input type="text" required>
+            </div>
+            <div class="dato">
+                <label>Codigo Postal</label>
+                <input type="text" required>
+            </div>
+            <div class="termsAndButton">
+                <p class="muted">Antes de continuar, por favor lee nuestros <strong><a class="link">Terminos y Condiciones</a></strong></p>
+                <div class="confirm">
+                    <input type="checkbox" class="termsAgree" required/>
+                    <p>He leido y acepto los terminos y condiciones de uso.</p>
+                </div>
+                <button>Continuar</button>
+            </div>
+        </form>
+    </div>
+    <!-- FOOTER -->
+    <div class="footer">
+
+    </div>
+    <!-- FONT AWESOME: importa iconos -->
+    <script src="https://kit.fontawesome.com/e80c9c3cc8.js" crossorigin="anonymous"></script>
+</body>
+</html>
