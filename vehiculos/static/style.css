@@ -1,3 +1,7 @@
+:root {
+    --color-primario: #691e63;
+    --color-primario-oscuro: #42133e;
+}
 
 * {
     font-family: 'Anek Devanagari', sans-serif;
@@ -41,33 +45,33 @@ nav {
 
 .login {
     transition: 0.5s;
-    border: 1px solid #691e63;
-    color: #691e63;
+    border: 1px solid var(--color-primario);
+    color: var(--color-primario);
     border-radius: 5px;
 }
 
 .login:hover {
     transition: 0.5s;
-    color: #42133e;
+    color: var(--color-primario-oscuro);
 }
 
 .register {
     transition: 0.5s;
-    background-color: #691e63;
+    background-color: var(--color-primario);
     color: #ffffff;
     border-radius: 5px;
 }
 
 .register:hover {
     transition: 0.5s;
-    background-color: #42133e;
+    background-color: var(--color-primario-oscuro);
 }
 
 /* FALTA TODAVIA Entrada: contiene titulo, descripcion, imagenes, etc. (solo diseño) */
 
 .titleEntrada {
     text-align: center;
-    color: #691e63;
+    color: var(--color-primario);
     font-size: 85px;
 }
 
@@ -79,7 +83,7 @@ nav {
 }
 
 .splashVioletText {
-    color: #691e63;
+    color: var(--color-primario);
 }
 
 .splashEntrada p {
@@ -91,7 +95,7 @@ nav {
 
 .seeOffer {
     transition: 0.5s;
-    background-color: #691e63;
+    background-color: var(--color-primario);
     border: none;
     color: #ffffff;
     border-radius: 5px;
@@ -102,7 +106,7 @@ nav {
 
 .seeOffer:hover {
     transition: 0.5s;
-    background-color: #42133e;
+    background-color: var(--color-primario-oscuro);
 }
 
 /* Ofertas (Scroll Home) */
@@ -114,7 +118,7 @@ nav {
 .ofertasTitle {
     margin-top: 2em;
     font-size: 37.5px;
-    color: #691e63
+    color: var(--color-primario)
 }
 
 .ofertasDescription {
@@ -148,7 +152,7 @@ nav {
     top: 8px;
     left: 16px;
     color: #ffffff;
-    background-color: #691e63;
+    background-color: var(--color-primario);
     border-radius: 6.5px;
     padding: 2.5px;
     width: 30%;
@@ -194,7 +198,7 @@ nav {
 }
 
 .pasosFlightTitle {
-    color: #691e63;
+    color: var(--color-primario);
     margin-top: 2em;
 }
 
@@ -212,7 +216,7 @@ nav {
 .explainingPasosFlight h2 {
     margin-left: 15px;
     font-size: 5em;
-    color:#691e63;
+    color:var(--color-primario);
 }
 
 .explainingPasosFlight h3 {
@@ -268,7 +272,7 @@ nav {
 
 .submit {
     transition: 0.5s;
-    background-color: #691e63;
+    background-color: var(--color-primario);
     border: none;
     color: #ffffff;
     border-radius: 5px;
@@ -278,7 +282,7 @@ nav {
 
 .submit:hover {
     transition: 0.5s;
-    background-color: #42133e;
+    background-color: var(--color-primario-oscuro);
 }
 
 .anotherLogin {
@@ -406,7 +410,7 @@ nav {
 
 .termsAndButton button {
     transition: 0.5s;
-    background-color: #691e63;
+    background-color: var(--color-primario);
     border: none;
     color: #ffffff;
     border-radius: 5px;
@@ -418,5 +422,50 @@ nav {
 
 .termsAndButton button:hover {
     transition: 0.5s;
-    background-color: #42133e;
+    background-color: var(--color-primario-oscuro);
+}
+
+/* FOOTER */
+
+.footer {
+    background-color: #f8f7f7;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.socialInformation {
+    display: flex;
+    flex-direction: column;
+}
+
+.socialInformation h1 {
+    color: var(--color-primario)
+}
+
+.socialInformation p {
+    margin-top: -25px;
+    color: #cccccc;
+}
+
+.socialMediaInformation {
+    margin-left: -15px;
+    margin-top: 10px;
+}
+
+.socialMediaInformation a {
+    margin-left: 15px;
+}
+
+.formalInformation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.firstColumnFormalInfo, .secondColumnFormalInfo, .thirdColumnFormalInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
 }
