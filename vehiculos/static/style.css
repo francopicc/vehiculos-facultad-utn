@@ -458,6 +458,10 @@ nav {
     margin-left: 15px;
 }
 
+#iconoSocialFooter {
+    color: var(--color-primario)
+}
+
 .formalInformation {
     display: flex;
     flex-direction: row;
