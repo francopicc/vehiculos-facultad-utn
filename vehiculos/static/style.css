@@ -16,6 +16,10 @@
     color: #20578d;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* Configuracion del Navbar (solamente diseño) */
 
 
@@ -79,7 +83,7 @@ nav {
     font-size: 23px;
     margin-top: -45px;
     margin-left: 18em;
-    line-height: 42px;
+    line-height: 17.5px;
 }
 
 .splashVioletText {
@@ -207,7 +211,7 @@ nav {
 }
 
 .explainingPasosFlight {
-    margin-top: 1em;
+    margin-top: 0.75em;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -215,13 +219,14 @@ nav {
 
 .explainingPasosFlight h2 {
     margin-left: 15px;
+    margin-top: 40px;
     font-size: 5em;
     color:var(--color-primario);
 }
 
 .explainingPasosFlight h3 {
     color: #616161;
-    margin-top: 38px;
+    margin-top: 75px;
     margin-left: 15px;
 }
 
