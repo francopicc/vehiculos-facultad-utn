@@ -1,3 +1,5 @@
+/* Configuraciones Globales */
+
 :root {
     --color-primario: #691e63;
     --color-primario-oscuro: #42133e;
@@ -18,6 +20,10 @@
 
 a {
     text-decoration: none;
+}
+
+button {
+    cursor: pointer;
 }
 
 /* Configuracion del Navbar (solamente diseño) */
@@ -112,6 +118,76 @@ nav {
     transition: 0.5s;
     background-color: var(--color-primario-oscuro);
 }
+
+/* Input Data Home */
+
+.inputCenter {
+    display: flex;
+    justify-content: center;
+    margin-top: 4em;
+}
+
+.inputData {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 15px;
+}
+
+.inputDataSelectionFirst {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.chooseFlight {
+    margin-top: -5px;
+    margin-right: 19em;
+}
+
+.chooseRowFlight {
+    display: flex;
+    flex-direction: row;
+    margin-top: -17.5px;
+}
+
+.dateInfoFlight {
+    margin-top: 5px;
+}
+
+.secondaryInfoFlight {
+    margin-top: 10px;
+}
+
+.secondaryInfoFlight select, .dateInfoFlight input {
+    padding: 3px;
+}
+
+.submitDataDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.submitDataDiv button {
+    transition: 0.5s;
+    padding: 6.5px;
+    width: 18%;
+    border: none;
+    border-radius: 7.5px;
+    background-color: var(--color-primario);
+    color: #ffffff;
+}
+
+.submitDataDiv button:hover {
+    transition: 0.5s;
+    background-color: var(--color-primario-oscuro);
+}
+
+.input input {
+    margin-left: 8px;
+}
+
 
 /* Ofertas (Scroll Home) */
 

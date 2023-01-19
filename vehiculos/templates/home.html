@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto sobre Gestion Vehicular - Grupo C</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500&display=swap" rel="stylesheet">
@@ -40,9 +40,73 @@
         </div>
     </div>
     <!-- DIV INPUT -->
-    <div class="inputData">
-        <!-- Falta hacer peor hay que preguntar por los input y esas cosas -->
-    </div>
+    <form>
+        <div class="inputCenter">
+            <div class="inputData">
+                <div class="inputDataSelectionFirst">
+                    <div class="input">
+                        <input type="checkbox" />
+                        <label>Todo Incluido</label>
+                    </div>
+                    <div class="input">
+                        <input type="checkbox" />
+                        <label>Vuelos</label>
+                    </div>
+                    <div class="input">
+                        <input type="checkbox" />
+                        <label>Hoteles</label>
+                    </div>
+                    <div class="input">
+                        <input type="checkbox" />
+                        <label>Autos</label>
+                    </div>
+                    <div class="input">
+                        <input type="checkbox" />
+                        <label>Paquetes</label>
+                    </div>
+                </div>
+                <div class="chooseFlight">
+                    <p>Escoge uno o mas para crear tu proximo viaje:</p>
+                    <div class="chooseRowFlight">
+                        <div class="input">
+                            <input type="checkbox" />
+                            <label>Hotel</label>
+                        </div>
+                        <div class="input">
+                            <input type="checkbox" />
+                            <label>Vuelo</label>
+                        </div>
+                        <div class="input">
+                            <input type="checkbox" />
+                            <label>Auto</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="dateInfoFlight">
+                    <!-- Van a ser input con sugerencias -->
+                    <input type="text" placeholder="Origen"/>
+                    <input type="text" placeholder="Destino"/>
+                    <input type="date" placeholder="Origen"/>
+                    <input type="date" placeholder="Origen"/>
+                </div>
+                <div class="secondaryInfoFlight">
+                    <select>
+                        <option value="idaVuelta">Ida y vuelta</option>
+                        <option value="onlyIda">Solo Ida</option>
+                    </select>
+                    <select>
+                        <option value="one">1</option>
+                        <option value="two">2</option>
+                        <option value="three">3</option>
+                        <option value="four">4</option>
+                    </select>
+                </div>
+                <div class="submitDataDiv">
+                    <button type="submit" class="submitDataFromHome">Continuar</button>
+                </div>
+            </div>
+        </div>        
+    </form>
     <!-- OFERTAS EXCLUSIVAS -->
     <div class="ofertasExclusivas">
         <h1 class="ofertasTitle">Ofertas exclusivas</h1>

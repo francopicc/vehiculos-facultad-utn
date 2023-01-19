@@ -1,0 +1,1 @@
+// Este archivo esta solo destinado al funcionamiento de las checkbox (Solo para que no se marquen mas de 2 checkbox al mismo tiempo.)
