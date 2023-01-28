@@ -7,6 +7,8 @@ from django.db import models
 class Vuelo (models.Model):
     # Se podria añadir un ID aca porque es mas facil identificar el vuelo (pronto)
     id = models.AutoField(primary_key=True)
+    tipoVuelo1 = models.BooleanField(default=False, verbose_name="Opciones de Input 1")
+    tipoVuelo2 = models.BooleanField(default=False, verbose_name="Opciones de Input 2")
     origenVuelo = models.CharField(max_length=30, verbose_name='Origen')
     destinoVuelo = models.CharField(max_length=30, verbose_name='Destino')
     # Este queda medio dudoso, pero lo vamos a dejar aca :D
@@ -30,9 +32,9 @@ class User (models.Model):
     nombre = models.CharField(verbose_name='Nombre', max_length=30)
     apellido = models.CharField(verbose_name='Apellido', max_length=30)
     nacimiento = models.DateField(verbose_name="Nacimiento")
-    telefono = models.IntegerField(verbose_name='Telefono', max_length=20)
+    telefono = models.IntegerField(verbose_name='Telefono')
     tipodocumento = models.CharField(verbose_name='Tipo DNI', max_length=15)
-    documento = models.IntegerField(verbose_name="Documento", max_length=35)
+    documento = models.IntegerField(verbose_name="Documento")
     pais = models.CharField(verbose_name="Pais", max_length=40)
     provincia = models.CharField(verbose_name="Provincia", max_length=25)
     calle = models.CharField(verbose_name="Calle", max_length=40)
