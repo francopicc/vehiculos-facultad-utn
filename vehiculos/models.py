@@ -6,6 +6,7 @@ from django.db import models
 
 class Vuelo (models.Model):
     # Se podria añadir un ID aca porque es mas facil identificar el vuelo (pronto)
+    id = models.AutoField(primary_key=True)
     origenVuelo = models.CharField(max_length=30, verbose_name='Origen')
     destinoVuelo = models.CharField(max_length=30, verbose_name='Destino')
     # Este queda medio dudoso, pero lo vamos a dejar aca :D
@@ -19,11 +20,13 @@ class Vuelo (models.Model):
         fila = self.origenVuelo + " " + self.destinoVuelo
         return fila
 
+
 # Modelo para recibir cada dato del usuario. Pueden encontrarse superusuarios y usuarios.
 
 # Arreglar comillas doble por una comilla (mas simple)
 
 class User (models.Model):
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(verbose_name='Nombre', max_length=30)
     apellido = models.CharField(verbose_name='Apellido', max_length=30)
     nacimiento = models.DateField(verbose_name="Nacimiento")
