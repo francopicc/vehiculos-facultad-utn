@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import Vuelo
+from .models import Auto
 
 # Register your models here.
 
-admin.site.register(Vuelo)
+# Registro de Modelos para ingresos.
+
+admin.site.register(Auto) # Auto

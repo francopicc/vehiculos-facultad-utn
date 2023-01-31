@@ -1,68 +1,69 @@
-<form enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    <div class="inputCenter">
-        <div class="inputData">
-            <div class="inputDataSelectionFirst">
-                <div class="input">
-                    <input type="checkbox" name="allIncluded" id="check1" onclick="checkSelection(this.id)"/>
-                    <label>Todo Incluido</label>
-                </div>
-                <div class="input">
-                    <input type="checkbox" name="flights" id="check2" onclick="checkSelection(this.id)"/>
-                    <label>Vuelos</label>
-                </div>
-                <div class="input">
-                    <input type="checkbox" name="hotels" id="check3" onclick="checkSelection(this.id)"/>
-                    <label>Hoteles</label>
-                </div>
-                <div class="input">
-                    <input type="checkbox" name="cars" id="check4" onclick="checkSelection(this.id)"/>
-                    <label>Autos</label>
-                </div>
-                <div class="input">
-                    <input type="checkbox" name="packages" id="check5" onclick="checkSelection(this.id)"/>
-                    <label>Paquetes</label>
+<div class="formHomeDiv">
+    <form method="post" action="/#show" class="formHome">
+        <label class="titleForm">Alquiler de Vehiculos</label>
+        {% csrf_token %}
+        <div class="formHomeRow">
+            <div class="formHomeDetails">
+                <div class="retiroVehiculoDate">
+                    <label>LUGAR DE RETIRO</label>
+                    {{ formulario.lugarRetiro }}
                 </div>
             </div>
-            <div class="chooseFlight">
-                <p>Escoge uno o mas para crear tu proximo viaje:</p>
-                <div class="chooseRowFlight">
-                    <div class="input">
-                        <input type="checkbox" name="secondHotels" id="checkbox1" onclick="checkSelection2(this.id)" />
-                        <label>Hotel</label>
-                    </div>
-                    <div class="input">
-                        <input type="checkbox" name="secondFlights" id="checkbox2" onclick="checkSelection2(this.id)"/>
-                        <label>Vuelo</label>
-                    </div>
-                    <div class="input">
-                        <input type="checkbox" name="secondCars" id="checkbox3" onclick="checkSelection2(this.id)"/>
-                        <label>Auto</label>
-                    </div>
+            <div class="formHomeDetailsTwo">
+                <div>
+                    <label>FECHA DE RETIRO</label>
+                    {{ formulario.fechaRetiro }}
+                </div>
+                <div>
+                    <label>FECHA DE REGRESO</label>
+                    {{ formulario.fechaRegreso }}
                 </div>
             </div>
-            <div class="dateInfoFlight">
-                <!-- Van a ser input con sugerencias -->
-                <input type="text" name="Origen" placeholder="Origen" maxlength="30"/>
-                <input type="text" name="Destino" placeholder="Destino" maxlength="30"/>
-                <input type="date" name="startDate" placeholder="Fecha de Inicio"/>
-                <input type="date" name="endDate" placeholder="Fecha de Fin"/>
-            </div>
-            <div class="secondaryInfoFlight">
-                <select name="optionFlight">
-                    <option value="idaVuelta">Ida y vuelta</option>
-                    <option value="onlyIda">Solo Ida</option>
-                </select>
-                <select name="optionQuantity">
-                    <option value="one">1</option>
-                    <option value="two">2</option>
-                    <option value="three">3</option>
-                    <option value="four">4</option>
-                </select>
-            </div>
-            <div class="submitDataDiv">
-                <button type="submit" class="submitDataFromHome">Continuar</button>
+            <div class="submitButtonStyling">
+                <button type="submit" class="submitButtonFormHome">Buscar</button>
             </div>
         </div>
-    </div>        
-</form>
+    </form>
+    <div class="autosDisponiblesDiv">
+        <label>Alquiler de autos cercanos</label>
+        <div>
+            {% for dato in datos %}
+            <div class="datoVehiculo">
+                <div class="imgInformationVehiculo">
+                    <img src="{{ dato.imagenes.url }}" alt="{{ dato.marca }} {{ dato.modelo }}" class="" />
+                </div>
+                <div class="datosVehiculo">
+                    <div class="informationVehiculo">
+                        <h2>{{ dato.marca }} {{ dato.modelo }}</h2>
+                    </div>
+                    <div class="infoVehiculoDetails">
+                        <div class="capacidadDetails">
+                            <i class="fa-solid fa-user fa-sm"></i>
+                            <p>{{ dato.capacidad }} personas</p>
+                        </div>
+                        {% if dato.aire_acondicionado == True %}
+                        <div class="acDetails">
+                            <i class="fa-regular fa-snowflake"></i>
+                            <p>A/C</p>
+                        </div>
+                        {% endif %}
+                        <div class="seguroDetails">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <p>Cobertura</p>
+                        </div>
+                        {% if dato.kilometraje == True %}
+                        <div class="kilometrajeDetails">
+                            <i class="fa-solid fa-gauge"></i>
+                            <p>Ilimitado</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="botonReserva">
+                        <button type="submit" class="reservarButton">Reservar</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

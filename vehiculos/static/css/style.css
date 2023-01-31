@@ -93,7 +93,7 @@ nav {
     font-size: 23px;
     margin-top: -45px;
     margin-left: 18em;
-    line-height: 17.5px;
+    line-height: 45px;
 }
 
 .splashVioletText {
@@ -125,73 +125,165 @@ nav {
 
 /* Input Data Home */
 
-.inputCenter {
+.formHomeDiv {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-top: 4em;
+    align-items: center;
 }
 
-.inputData {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 10px;
-    width: fit-content;
-    padding: 15px;
-}
-
-.inputDataSelectionFirst {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 5px;
-}
-
-.chooseFlight {
-    margin-top: -5px;
-    margin-right: 19em;
-}
-
-.chooseRowFlight {
-    display: flex;
-    flex-direction: row;
-    margin-top: -17.5px;
-}
-
-.dateInfoFlight {
-    margin-top: 5px;
-}
-
-.secondaryInfoFlight {
-    margin-top: 10px;
-}
-
-.secondaryInfoFlight select, .dateInfoFlight input {
-    padding: 3px;
-}
-
-.submitDataDiv {
-    display: flex;
-    justify-content: center;
-}
-
-.submitDataDiv button {
-    transition: 0.5s;
-    padding: 6.5px;
-    width: 18%;
+.formHomeDiv input, .formHomeDiv select {
+    border-radius: 2px;
     border: none;
-    border-radius: 7.5px;
-    background-color: var(--color-primario);
+    margin-left: 5px;
+    font-size: 15px;
+}
+
+.titleForm {
     color: #ffffff;
+    font-size: 21px;
+    margin-left: 5px;
 }
 
-.submitDataDiv button:hover {
-    transition: 0.5s;
-    background-color: var(--color-primario-oscuro);
+.formHomeDetails label, .formHomeDetailsTwo label {
+    color: #ffffff;
+    font-size: 12.5px;
+    margin-left: 5px;
+    margin-top: 5px;
 }
 
-.input input {
-    margin-left: 8px;
+.formHomeDiv input[type=datetime-local] {
+    padding: 8px;
 }
 
+.formHomeDetails input[type=text] {
+    padding: 9px;
+}
+
+.formHomeDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+    background-color: #c6acd1;
+    padding: 30px;
+}
+
+.formHome {
+    display: flex;
+    flex-direction: column;
+    background-color: #382441;
+    border-radius: 6.5px;
+    padding: 15px;
+    width: fit-content;
+}
+
+.formHomeRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.formHomeDetailsTwo {
+    display: flex;
+    flex-direction: row;
+}
+
+.formHomeDetails div, .formHomeDetailsTwo div {
+    display: flex;
+    flex-direction: column;
+}
+
+.submitButtonFormHome {
+    margin-left: 5px;
+    margin-top: 27px;
+    padding: 9px;
+    border-radius: 2.5px;
+    color: #ffffff;
+    font-size: 15px;
+    width: 120px;
+    border: none;
+    background-color: #bd99e0;
+}
+
+.autosDisponiblesDiv {
+    margin-top: 2em;
+    width: 44em;
+    background-color: #ffffff;
+    border-radius: 6.5px;
+    padding: 15px;
+    display: none;
+}
+
+.autosDisponiblesDiv label {
+    color: #000000;
+    font-size: 21px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.datoVehiculo {
+    display: flex;
+    flex-direction: row;
+    background-color: #f8f8f8;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.imgInformationVehiculo img {
+    object-fit: scale-down;
+    width: 170px;
+    height: 90px;
+    border-radius: 13px;
+}
+
+.informationVehiculo h2 {
+    font-size: 20px;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.datosVehiculo {
+    display: flex;
+    flex-direction: column;
+}
+
+.infoVehiculoDetails {
+    display: flex;
+    flex-direction: row;
+}
+
+.infoVehiculoDetails div {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.infoVehiculoDetails div p {
+    margin-left: 5px;
+    margin-top: -3.5px;
+    font-size: 14.5px;
+}
+
+.capacidadDetails {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.capacidadDetails i {
+    margin-top: 8px;
+}
+
+.reservarButton {
+    margin-top: 10px;
+    margin-left: 31em;
+    border: none;
+    padding: 5px;
+    background-color: #e2e1e4;
+    width: 85px;
+    border-radius: 5px;
+}
 
 /* Ofertas (Scroll Home) */
 
@@ -235,6 +327,7 @@ nav {
 
 .imgInformation img {
     border-radius: 15px;
+    height: 170px;
 }
 
 .textOfferImage {
@@ -256,12 +349,12 @@ nav {
 
 .ofertaName h3 {
     margin-top: -5px;
-    margin-right: 45px;
+    margin-right: 60px;
 }
 
 .ofertaName p {
     margin-top: -20px;
-    margin-left: 15px;
+    text-align: left;
     color: #cccccc;
 }
 
@@ -278,7 +371,8 @@ nav {
 .ofertaRating p {
     margin-top: -2px;
     margin-left: 2.5px;
-    color: #cccccc;
+    color: #4d4040;
+    font-weight: bold;
 }
 
 /* PASOS VIAJE */

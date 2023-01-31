@@ -10,20 +10,20 @@ boton.addEventListener('click', () => {
 
 // INPUT HOME POST
 
-// Checkbox en Input POST Home (Lista 1)
+// Convertimos los inputs de charField a dateField (no es posible en el forms.py)
 
-function checkSelection (id) {
-    for(let i = 1; i <= 5; i++) {
-        document.getElementById("check" + i).checked = false;
+document.getElementsByName("fechaRetiro")[0].type = 'datetime-local'
+document.getElementsByName("fechaRegreso")[0].type = 'datetime-local'
+
+// Tambien se puede hacer mediante sessionStorage (creeria un toque mas seguro)
+const submitDivCars = () => {
+    console.log('activado')
+    if(document.referrer == "http://127.0.0.1:8000/") {
+        if(window.location.hash == "#show") {
+            const divCars = document.getElementsByClassName("autosDisponiblesDiv")[0]
+            divCars.style.display = "initial"
+        }
     }
-    document.getElementById(id).checked = true;
 }
 
-// Checkbox en Input POST Home (Lista 2)
-
-function checkSelection2 (id) {
-    for(let i = 1; i <= 3; i++) {
-        document.getElementById("checkbox" + i).checked = false;
-    }
-    document.getElementById(id).checked = true;
-}
+submitDivCars();

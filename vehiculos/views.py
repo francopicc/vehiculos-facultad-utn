@@ -1,18 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Vuelo
-from .forms import VueloForm
+from .models import Auto
+from .forms import AutoForm
 
 # Create your views here.
 
 def inicio(request):
-    # formulario = VueloForm(request.POST or None)
-    if(request.method == 'POST'):
-        new_vuelo = Vuelo(
-            origenVuelo = "Sexo"
-        )
-        new_vuelo.save()
-    return render(request, 'paginas/index.html')
+    formulario = AutoForm()
+    lista = Auto.objects.all().filter(reservado=False)
+    return render(request, 'paginas/index.html', {'formulario': formulario, 'datos': lista})
 
 # El usuario solo podra crear una instancia POST mientras este registrado, mientras el superusuario puede hacer 4 acciones: create, read, update y delete (CRUD).
 def acerca(request):

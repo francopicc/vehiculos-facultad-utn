@@ -1,9 +1,9 @@
 from django import forms
-from .models import Vuelo
+from .models import Auto
 
 # Formulario de POST Home
 
-class VueloForm(forms.ModelForm):
+class AutoForm (forms.ModelForm):
     class Meta:
-        model = Vuelo
+        model = Auto
         fields = '__all__'
