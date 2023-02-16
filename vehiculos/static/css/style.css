@@ -1,7 +1,7 @@
 /* Configuraciones Globales */
 
 html {
- scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -132,7 +132,8 @@ nav {
     align-items: center;
 }
 
-.formHomeDiv input, .formHomeDiv select {
+.formHomeDiv input,
+.formHomeDiv select {
     border-radius: 2px;
     border: none;
     margin-left: 5px;
@@ -145,7 +146,20 @@ nav {
     margin-left: 5px;
 }
 
-.formHomeDetails label, .formHomeDetailsTwo label {
+.error {
+    display: none;
+    background-color: rgba(255, 137, 137, 0.507);
+    color: rgba(31, 2, 1, 0.507);
+    padding: 3.5px;
+    border-radius: 3.5px;
+}
+
+#error p {
+    margin-left: 6.5px;
+}
+
+.formHomeDetails label,
+.formHomeDetailsTwo label {
     color: #ffffff;
     font-size: 12.5px;
     margin-left: 5px;
@@ -187,7 +201,8 @@ nav {
     flex-direction: row;
 }
 
-.formHomeDetails div, .formHomeDetailsTwo div {
+.formHomeDetails div,
+.formHomeDetailsTwo div {
     display: flex;
     flex-direction: column;
 }
@@ -231,16 +246,28 @@ nav {
 }
 
 .imgInformationVehiculo img {
-    object-fit: scale-down;
+    object-fit: cover;
     width: 170px;
     height: 90px;
     border-radius: 13px;
+}
+
+.informationVehiculo {
+    display: flex;
+    flex-direction: row;
 }
 
 .informationVehiculo h2 {
     font-size: 20px;
     margin-left: 10px;
     font-weight: 500;
+}
+
+.informationVehiculo p {
+    margin-top: 6px;
+    font-size: 14px;
+    margin-left: 5px;
+    color: #9e9e9e;
 }
 
 .datosVehiculo {
@@ -275,9 +302,13 @@ nav {
     margin-top: 8px;
 }
 
+.autoProovedor {
+    margin-left: 10px;
+}
+
 .reservarButton {
     margin-top: 10px;
-    margin-left: 31em;
+    margin-left: 32em;
     border: none;
     padding: 5px;
     background-color: #e2e1e4;
@@ -285,20 +316,461 @@ nav {
     border-radius: 5px;
 }
 
-/* Ofertas (Scroll Home) */
+/* Order Details (vehiculo) */
 
-.ofertasExclusivas {
-    text-align: center;
+.checkout {
+    margin-top: 50px;
 }
+
+.ubicationDetailsVehiculo {
+    display: flex;
+    flex-direction: row;
+}
+
+.ubicacionVehiculo {
+    background-color: #f5f5f5;
+    padding: 5px;
+}
+
+.detallesUbicacionVehiculo {
+    display: flex;
+    flex-direction: row;
+    margin-left: 12.5em;
+}
+
+.detallesUbicacionVehiculo div {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.detallesUbicacionVehiculo div i {
+    margin-top: 2.5px;
+}
+
+#daysCountBetween {
+    margin-top: 1px;
+    margin-left: 5px
+}
+
+.lugarNombreVehiculo,
+#fechaRetiro,
+#fechaRegreso {
+    margin-left: 5px;
+    margin-top: 1px;
+}
+
+.autoDetallesCompra {
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+    padding: 10px;
+    margin-top: 16.5px;
+}
+
+.autoDetallesPrincipales {
+    display: flex;
+    flex-direction: row;
+    margin-left: 13em;
+}
+
+.autoDetallesPrincipales img {
+    width: 145px;
+    height: 75px;
+    border-radius: 10px;
+}
+
+.autoDetallesPrincipales h1 {
+    font-size: 26px;
+    font-weight: 500;
+    margin-left: 15px;
+}
+
+.datosVehiculoCheckOut {
+    margin-top: -20px;
+}
+
+.datosVehiculo2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.datosVehiculo2 p {
+    margin-top: 27.5px;
+}
+
+.reservaTotal {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.resumenReserva {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+}
+
+.resumenReserva div:nth-child(1) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 450px;
+    border-radius: 3px;
+    margin-top: 4px;
+    padding: 5px;
+}
+
+.resumenReserva div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 450px;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding: 5px;
+    color: #8f8f8f;
+}
+
+.resumenReserva div p:nth-child(1) {
+    margin-left: 10px;
+}
+
+.resumenReserva div p:nth-child(2) {
+    margin-right: 10px;
+}
+
+#finalTexto,
+#finalValor {
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Para no cambiar valores globales del div, lo seleccionamos de otra forma aca */
+
+.infoVehiculoDetailsCheckOut {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-top: -22.5px;
+}
+
+.infoVehiculoDetailsCheckOut div {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.infoVehiculoDetailsCheckOut div p {
+    margin-left: 5px;
+    margin-top: -3.5px;
+}
+
+.infoVehiculoDetails div:nth-child(2) {
+    margin-top: 0px;
+}
+
+.proovedorInformationDetails {
+    margin-left: 1em;
+}
+
+.datosPagoCheckOut {
+    display: flex;
+    justify-content: center;
+}
+
+.reservaTotal {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.botonFinalizarPago {
+    display: flex;
+    justify-content: center;
+}
+
+.toEndPaymentButton {
+    margin-top: 10px;
+    border: none;
+    width: 50%;
+    padding: 5px;
+    font-size: 16.5px;
+    background-color: #ebe6ea;
+    border-radius: 5px;
+}
+
+/* CheckOut Final */
+
+.titleArea {
+    margin-left: 13.5em;
+    margin-top: 2em;
+}
+
+.checkoutTitle {
+    margin-top: -6.5px;
+    font-size: 25px;
+}
+
+.paymentCheckOutPageDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.paymentCheckout {
+    margin-left: 3em;
+}
+
+.documentRequiredMessage {
+    padding: 20px;
+    border: 1px solid #8b8b8b;
+    border-radius: 5px;
+    max-width: 570px;
+}
+
+.documentRequiredMessage div:nth-child(1) {
+    margin-top: 15px;
+}
+
+.documentRequiredMessage div {
+    display: flex;
+    flex-direction: row;
+    color: #3f3f3f;
+}
+
+.docsRequiredTitle {
+    margin-top: -18px;
+    margin-left: 5px;
+    font-size: 26.5px;
+}
+
+.descriptionDocsCheckout {
+    max-width: 520px;
+    margin-top: -20px;
+}
+
+#form-checkout {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.formDataCheckout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 600px;
+    background-color: #fcfcfc;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.formDataStyled {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 600px;
+    margin-top: -5px;
+}
+
+.firstDataList {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.secureDataList {
+    display: flex;
+    flex-direction: row;
+    margin-left: -25px;
+}
+
+.secureDataList div:nth-child(1) div {
+    margin-right: 5px;
+    width: 100px;
+}
+
+.firstDataList select {
+    padding: 3px;
+}
+
+.secureDataList div:nth-child(2) div {
+    margin-left: 5px;
+    width: 95px;
+}
+
+.secureDataList label {
+    font-size: 11px;
+    max-width: 120px;
+    margin-left: 2.5px;
+}
+
+.secondDataList {
+    display: flex;
+    flex-direction: column;
+    margin-top: 6.5px;
+}
+
+.container {
+    height: 18px;
+    font-size: 13.5px;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 2px;
+    background-color: #ffffff;
+    padding: 1px 2px;
+}
+
+
+.firstDataList div, .secondDataList div {
+    padding: 2.5px;
+    width: 200px;
+}
+
+.secondDataList input, .secondDataList select {
+    margin-top: -2px;
+}
+
+.firstDataList div {
+    padding: 7.5px;
+}
+
+.secondDataList input, .secondDataList select {
+    padding: 3px;
+    width: 210px;
+    font-size: 15px;
+}
+
+.secondDataList select {
+    width: 220px;
+}
+
+
+.describeFormPay {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+.resumen {
+    display: flex;
+    flex-direction: column;
+    margin-left: -2em;
+}
+
+.resumenPagoCheckOutPage2 {
+    display: flex;
+    flex-direction: column;
+    margin-top: -73.5px;
+}
+
+.paymentDetailsCheckoutText {
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.checkoutPago {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(187, 187, 187);
+    height: 120px;
+}
+
+.checkoutPago div {
+    display: flex;
+    flex-direction: row;
+    width: 320px;
+    margin-top: 5px;
+    justify-content: space-between;
+}
+
+.checkoutPago div:nth-child(4) {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.caracteristicasCheckoutText {
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.caracteristicasResumen {
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.vehiculoCheckout p:nth-child(1) {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.vehiculoCheckout p:nth-child(2) {
+    margin-top: -5px;
+    font-size: 13px;
+}
+
+#retiroFecha, #regresoFecha {
+    font-weight: bold;
+    margin-top: -5px;
+}
+
+#modeloCheckout {
+    color: #000000;
+    font-size: 18px;
+}
+
+.caracteristicasResumen div p:nth-child(1) {
+    font-size: 15px;
+    color: #616161;
+}
+
+.caracteristicasCheckout div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.caracteristicasCheckout div:nth-child(1) {
+    margin-left: 2.5px;
+}
+
+.caracteristicasCheckout div p {
+    margin-left: 5px;
+    margin-top: -2.5px;
+}
+
+.requirementsAgreeCheckout {
+    margin-top: 50px;
+}
+
+.submitButtonPaymentCheckout {
+    margin-top: 10px;
+    padding: 5px;
+    width: 150px;
+    border: none;
+    background-color: #8f63a3;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+/* Ofertas (Scroll Home) */
 
 .ofertasTitle {
     margin-top: 2em;
     font-size: 37.5px;
+    text-align: center;
     color: var(--color-primario)
 }
 
 .ofertasDescription {
     margin-top: -36px;
+    text-align: center;
 }
 
 .ofertasList {
@@ -401,7 +873,7 @@ nav {
     margin-left: 15px;
     margin-top: 40px;
     font-size: 5em;
-    color:var(--color-primario);
+    color: var(--color-primario);
 }
 
 .explainingPasosFlight h3 {
@@ -472,7 +944,8 @@ nav {
 
 .anotherLogin {
     text-align: center;
-    color: #c7c7c7;;
+    color: #c7c7c7;
+    ;
 }
 
 .alternativeLoginLogos {
@@ -503,7 +976,7 @@ nav {
 
 .registerImgLogin div:nth-child(1) {
     padding: 5px;
-    background-color:rgba(245, 245, 245, 0.5);
+    background-color: rgba(245, 245, 245, 0.5);
     border-radius: 10px;
 }
 
@@ -518,7 +991,7 @@ nav {
     left: 50%;
     transform: translate(-50%, -50%);
     color: #000000;
-    background-color:rgba(245, 245, 245, 0.5);
+    background-color: rgba(245, 245, 245, 0.5);
     padding: 6px;
     border-radius: 5px;
     width: 95%;
@@ -526,7 +999,7 @@ nav {
 
 .registerLoginPageButton:hover {
     transition: 0.5s;
-    background-color:rgba(224, 224, 224, 0.5);
+    background-color: rgba(224, 224, 224, 0.5);
 }
 
 /* FALTAN UN PAR DE COSAS ACA COMO PONER BIEN EN EL CENTRO AL LOGIN */
@@ -618,6 +1091,16 @@ nav {
     flex-direction: row;
     justify-content: space-around;
     padding: 10px;
+    margin-top: 2em;
+}
+
+.footerPageCheckout {
+    background-color: #f8f7f7;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+    margin-top: 12em;
 }
 
 .socialInformation {
@@ -653,7 +1136,9 @@ nav {
     justify-content: space-around;
 }
 
-.firstColumnFormalInfo, .secondColumnFormalInfo, .thirdColumnFormalInfo {
+.firstColumnFormalInfo,
+.secondColumnFormalInfo,
+.thirdColumnFormalInfo {
     display: flex;
     flex-direction: column;
     margin-left: 50px;

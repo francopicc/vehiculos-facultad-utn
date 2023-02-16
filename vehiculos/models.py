@@ -66,6 +66,8 @@ class Auto (models.Model):
     cobertura = models.BooleanField(verbose_name="Tiene Cobertura:", default=False)
     aire_acondicionado = models.BooleanField(verbose_name="Tiene Aire Acondicionado:", default=False)
     kilometraje = models.BooleanField(verbose_name="Tiene Kilometraje:", default=False)
+    puertas = models.IntegerField(verbose_name="Cantidad de Puertas")
+    automatico = models.BooleanField(verbose_name="Transmision Automatica")
     reservado = models.BooleanField(verbose_name="Esta reservado:", default=False)
     lugarRetiro = models.CharField(verbose_name="Lugar de Retiro", max_length=50,default="")
     fechaRetiro = models.DateTimeField(verbose_name="Fecha de Retiro", blank=True, null=True)

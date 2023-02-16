@@ -1,6 +1,9 @@
 <div class="formHomeDiv">
     <form method="post" action="/#show" class="formHome">
         <label class="titleForm">Alquiler de Vehiculos</label>
+        <div class="error" id="error">
+            <p id="errorMessage">Ha ocurrido un error: las fechas no son correctas.</p>
+        </div>
         {% csrf_token %}
         <div class="formHomeRow">
             <div class="formHomeDetails">
@@ -28,41 +31,57 @@
         <label>Alquiler de autos cercanos</label>
         <div>
             {% for dato in datos %}
-            <div class="datoVehiculo">
-                <div class="imgInformationVehiculo">
-                    <img src="{{ dato.imagenes.url }}" alt="{{ dato.marca }} {{ dato.modelo }}" class="" />
+            <form action="/order/details" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{ dato.id }}" name="idFromVehiculo" />
+                <div class="datoVehiculo">
+                    <div class="imgInformationVehiculo">
+                        <img src="{{ dato.imagenes.url }}" alt="{{ dato.marca }} {{ dato.modelo }}" class="" />
+                    </div>
+                    <div class="datosVehiculo">
+                        <div class="informationVehiculo">
+                            <h2 name="autoModelo">{{ dato.marca }} {{ dato.modelo }}</h2>
+                            <p class="autoPrecio">${{ dato.precio }} p/ dia</p>
+                        </div> 
+                        <div class="infoVehiculoDetails">
+                            <div class="capacidadDetails">
+                                <i class="fa-solid fa-user fa-sm"></i>
+                                <p name="autoCapacidad">{{ dato.capacidad }} personas</p>
+                            </div>
+                            {% if dato.aire_acondicionado == True %}
+                            <div class="acDetails">
+                                <i class="fa-regular fa-snowflake"></i>
+                                <p>A/C</p>
+                            </div>
+                            {% endif %}
+                            {% if dato.cobertura == True %}
+                            <div class="seguroDetails">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <p>Cobertura</p>
+                            </div>
+                            {% endif %}
+                            {% if dato.kilometraje == True %}
+                            <div class="kilometrajeDetails">
+                                <i class="fa-solid fa-gauge"></i>
+                                <p>Ilimitado</p>
+                            </div>
+                            {% endif %}
+                            {% if dato.automatico == True %}
+                            <div class="automaticoDetails">
+                                <i class="fa-solid fa-a"></i>
+                                <p>Automatico</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="autoProovedor">
+                            <p>Proovedor: {{ dato.proovedor }}</p>
+                        </div>  
+                        <div class="botonReserva">
+                            <button type="submit" class="reservarButton">Reservar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="datosVehiculo">
-                    <div class="informationVehiculo">
-                        <h2>{{ dato.marca }} {{ dato.modelo }}</h2>
-                    </div>
-                    <div class="infoVehiculoDetails">
-                        <div class="capacidadDetails">
-                            <i class="fa-solid fa-user fa-sm"></i>
-                            <p>{{ dato.capacidad }} personas</p>
-                        </div>
-                        {% if dato.aire_acondicionado == True %}
-                        <div class="acDetails">
-                            <i class="fa-regular fa-snowflake"></i>
-                            <p>A/C</p>
-                        </div>
-                        {% endif %}
-                        <div class="seguroDetails">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <p>Cobertura</p>
-                        </div>
-                        {% if dato.kilometraje == True %}
-                        <div class="kilometrajeDetails">
-                            <i class="fa-solid fa-gauge"></i>
-                            <p>Ilimitado</p>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="botonReserva">
-                        <button type="submit" class="reservarButton">Reservar</button>
-                    </div>
-                </div>
-            </div>
+            </form>
             {% endfor %}
         </div>
     </div>

@@ -1,0 +1,196 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS Travel - Checkout</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500&display=swap" rel="stylesheet">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="content-left">
+            <a href="/">Inicio</a>
+            <a href="/acerca">Vuelos</a>
+            <a href="/acerca">Alojamientos</a>
+            <a href="/acerca">Paquetes</a>
+        </div>
+        <div class="content-right">
+            <a class="login" href="/login">Iniciar Sesion</a>
+            <a class="register" href="/register">Registrarse</a>
+        </div>
+    </nav>
+    <!-- CHECKOUT -->
+    <div class="checkoutFinalDetails">
+        <div class="titleArea">
+            <a href="/order/checkout" class="checkoutA">« Volver a la pagina anterior</a>
+            <h1 class="checkoutTitle">Completa tus datos para finalizar la compra de tu {{ checkout.marca }}
+                {{ checkout.modelo }}</h1>
+        </div>
+        <div class="paymentCheckOutPageDetails">
+            <div class="paymentCheckout">
+                <div class="documentRequiredMessage">
+                    <div>
+                        <i class="fa-solid fa-circle-info fa-xl"></i>
+                        <h1 class="docsRequiredTitle">Documentacion Requerida</h1>
+                    </div>
+                    <div>
+                        <p class="descriptionDocsCheckout">• Ten en cuenta que al momento de retirar el vehiculo, el conductor cuente con licencia de conducir (fisica), papeles relacionados al auto, documentacion valida y una tarjeta de credito relacionada a su nombre para usarla al momento de retirar el vehiculo</p>
+                    </div>
+                </div>
+                <!-- FORMULARIO -->
+                <form id="form-checkout" action="/process_payment" method="POST">
+                    <div id="form-checkout__cardNumber" class="container"></div>
+                    <div id="form-checkout__expirationDate" class="container"></div>
+                    <div id="form-checkout__securityCode" class="container"></div>
+                    <input type="text" id="form-checkout__cardholderName" placeholder="Titular do cartão" />
+                    <select id="form-checkout__issuer" name="issuer">
+                      <option value="" disabled selected>Banco emissor</option>
+                    </select>
+                    <select id="form-checkout__installments" name="installments">
+                      <option value="" disabled selected>Cuotas</option>
+                    </select>
+                    <select id="form-checkout__identificationType" name="identificationType">
+                      <option value="" disabled selected>Tipo de documento</option>
+                    </select>
+                    <input type="text" id="form-checkout__identificationNumber" name="identificationNumber" placeholder="Número do documento" />
+                    <input type="email" id="form-checkout__email" name="email" placeholder="E-mail" />
+                
+                    <input id="token" name="token" type="hidden">
+                    <input id="paymentMethodId" name="paymentMethodId" type="hidden">
+                    <input id="transactionAmount" name="transactionAmount" type="hidden" value="100">
+                    <input id="description" name="description" type="hidden" value="{{ checkout.marca }} {{ checkout.marca }}">
+                
+                    <button type="submit" id="form-checkout__submit">Pagar</button>
+                  </form>
+            </div>
+            <div class="resumen">
+                <div class="resumenPagoCheckOutPage2">
+                    <h1 class="paymentDetailsCheckoutText">Detalles del pago</h1>
+                    <div class="checkoutPago">
+                        <div>
+                            <p>Precio del Vehiculo</p>
+                            <p id="precioximp">${{ price.precioximp }}</p>
+                        </div>
+                        <div>
+                            <p>Impuestos Totales</p>
+                            <p id="precioimp">${{ price.precioimp }}</p>
+                        </div>
+                        <hr>
+                        <div>
+                            <p>Precio Final</p>
+                            <p id="precioFinalCheckout"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="caracteristicasResumenCheckout">
+                    <h1 class="caracteristicasCheckoutText">Detalles de la compra</h1>
+                    <div class="caracteristicasResumen">
+                        <div class="vehiculoCheckout">
+                            <p id="modeloCheckout" name="description">{{ checkout.marca }} {{ checkout.modelo }}</p>
+                            <p id="proovedorCheckout">Proovedor: {{ checkout.proovedor }}</p>
+                        </div>
+                        <div class="retiroCheckout">
+                            <p>Retiro:</p>
+                            <p id="retiroFecha">{{ place.retiro }}</p>
+                        </div>
+                        <div class="regresoCheckout">
+                            <p>Devolucion:</p>
+                            <p id="regresoFecha">{{ place.regreso }}</p>
+                        </div>
+                        <hr>
+                        <div>
+                            <p>Caracteristicas del vehiculo:</p>
+                            <div class="caracteristicasCheckout">
+                                <div class="capacidadDetails">
+                                    <i class="fa-solid fa-user fa-sm"></i>
+                                    <p name="autoCapacidad">{{ checkout.capacidad }} personas</p>
+                                </div>
+                                {% if checkout.aire_acondicionado == True %}
+                                <div class="acDetails">
+                                    <i class="fa-regular fa-snowflake"></i>
+                                    <p>A/C</p>
+                                </div>
+                                {% endif %}
+                                {% if checkout.cobertura == True %}
+                                <div class="seguroDetails">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <p>Cobertura</p>
+                                </div>
+                                {% endif %}
+                                {% if checkout.kilometraje == True %}
+                                <div class="kilometrajeDetails">
+                                    <i class="fa-solid fa-gauge"></i>
+                                    <p>Ilimitado</p>
+                                </div>
+                                {% endif %}
+                                {% if checkout.automatico == True %}
+                                <div class="automaticoDetails">
+                                    <i class="fa-solid fa-a"></i>
+                                    <p>Automatico</p>
+                                </div>
+                                {% endif %}
+                                <div class="automaticoDetails">
+                                    <i class="fa-solid fa-car-side"></i>
+                                    {% if checkout.puertas <= 1%}
+                                    <p>{{ checkout.puertas }} puerta</p>
+                                    {% else %}
+                                    <p>{{ checkout.puertas }} puertas</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="socialInformation">
+            <h1>DS Travel</h1>
+            <p>Siguenos en nuestras redes y enterate de mucho mas.</p>
+            <div class="socialMediaInformation">
+                <a class="linkSocial"><i class="fa-brands fa-facebook fa-xl" id="iconoSocialFooter"></i></a>
+                <a class="linkSocial"><i class="fa-brands fa-instagram fa-xl" id="iconoSocialFooter"></i></a>
+                <a class="linkSocial"><i class="fa-brands fa-twitter fa-xl" id="iconoSocialFooter"></i></a>
+            </div>
+        </div>
+        <div class="formalInformation">
+            <div class="firstColumnFormalInfo">
+                <h3>Express</h3>
+                <a>Acerca de nosotros</a>
+                <a>Planes</a>
+                <a>Ofertas</a>
+                <a>Politica de Privacidad</a>
+            </div>
+            <div class="secondColumnFormalInfo">
+                <h3>Contacto</h3>
+                <a>Ayuda</a>
+                <a>FAQ</a>
+                <a>Afiliados</a>
+            </div>
+            <div class="thirdColumnFormalInfo">
+                <h3>Mas</h3>
+                <a>Control</a>
+                <a>Nuestro Blog</a>
+                <a>Tips</a>
+            </div>
+        </div>
+    </div>
+    <!-- SCRIPTS -->
+    <script src="https://kit.fontawesome.com/e80c9c3cc8.js" crossorigin="anonymous"></script>
+    <script src={% static 'js/checkout.js' %} crossorigin="anonymous"></script>
+    <script src={% static 'js/payment.js' %} crossorigin="anonymous"></script>
+</body>
+
+</html>

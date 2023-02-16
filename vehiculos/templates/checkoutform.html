@@ -1,0 +1,33 @@
+<form action="/order/checkout" method="POST">
+    {% csrf_token %}
+            <input type="hidden" name="idFromVehiculo" value="{{ id }}" />
+            <div class="paymentDetails">
+                <div class="datosPagoCheckOut">
+                    <div class="reservaTotal">
+                        <div class="resumenReserva">
+                            <div class="precioPorDiaResumen">
+                                <p>Precio por dia</p>
+                                <p id="precioDiaResumen">${{ checkout.precio }}</p>
+                            </div>
+                            <div class="precioFinalPorDiaResumen">
+                                <p id="precioFinalDiaTexto"></p>
+                                <p id="precioFinalDiaValor">{{ checkout.precio }}</p>
+                            </div>
+                            <div class="impuestosResumen">
+                                <p id="impuestosTexto">Impuestos y tasas</p>
+                                <p id="impuestosValor"></p>
+                            </div>
+                            <div class="precioFinalResumen">
+                                <p id="finalTexto">Precio Final</p>
+                                <p id="finalValor"></p>
+                            </div>
+                        </div>
+                        <div class="botonFinalizarPago">
+                            <button class="toEndPaymentButton">Continuar</button>
+                        </div>
+                        <input type="hidden" name="precioFinal" />
+                        <input type="hidden" name="precioImpuestos" />
+                    </div>
+                </div>
+            </div>
+        </form>

@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS Travel</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="content-left">
+            <a href="/">Inicio</a>
+            <a href="/acerca">Vuelos</a>
+            <a href="/acerca">Alojamientos</a>
+            <a href="/acerca">Paquetes</a>
+        </div>
+        <div class="content-right">
+            <a class="login" href="/login">Iniciar Sesion</a>
+            <a class="register" href="/register">Registrarse</a>
+        </div>
+    </nav>
+    <!-- CHECKOUT -->
+    <div class="checkout">
+        <div class="ubicacionVehiculo">
+            <div class="detallesUbicacionVehiculo">
+                <div class="detallesUbicacionAuto">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="lugarNombreVehiculo">{{ place.placeName }}</p>
+                </div>
+                <div class="detallesFechaAuto">
+                    <i class="fa-solid fa-calendar"></i>
+                    <p id="fechaRetiro">{{ place.retiro }}</p>
+                    <p id="fechaRegreso">{{ place.regreso }}</p>
+                    <p id="daysCountBetween"></p>
+                </div>
+            </div>
+        </div>
+        <div class="autoDetallesCompra">
+            <div class="autoDetallesPrincipales">
+                <img src="{{ checkout.imagenes.url }}" alt="{{ checkout.marca }} {{ checkout.modelo }}" />
+                <div class="datosVehiculoCheckOut">
+                    <div class="datosVehiculo2">
+                        <h1>{{ checkout.marca }} {{ checkout.modelo }}</h1>
+                        <div class="informationVehiculo">
+                            <p class="autoPrecio">{{ checkout.precio }}$ p/ dia</p>
+                        </div>
+                    </div>
+                    <div class="infoVehiculoDetailsCheckOut">
+                        <div class="capacidadDetails">
+                            <i class="fa-solid fa-user fa-sm"></i>
+                            <p name="autoCapacidad">{{ checkout.capacidad }} personas</p>
+                        </div>
+                        {% if checkout.aire_acondicionado == True %}
+                        <div class="acDetails">
+                            <i class="fa-regular fa-snowflake"></i>
+                            <p>A/C</p>
+                        </div>
+                        {% endif %}
+                        <div class="seguroDetails">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <p>Cobertura</p>
+                        </div>
+                        {% if checkout.kilometraje == True %}
+                        <div class="kilometrajeDetails">
+                            <i class="fa-solid fa-gauge"></i>
+                            <p>Ilimitado</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="proovedorInformationDetails">
+                        <p>{{ checkout.proovedor }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'checkoutform.html' %}
+        <!-- FOOTER -->
+        <div class="footerPageCheckout">
+            <div class="socialInformation">
+                <h1>DS Travel</h1>
+                <p>Siguenos en nuestras redes y enterate de mucho mas.</p>
+                <div class="socialMediaInformation">
+                    <a class="linkSocial"><i class="fa-brands fa-facebook fa-xl" id="iconoSocialFooter"></i></a>
+                    <a class="linkSocial"><i class="fa-brands fa-instagram fa-xl" id="iconoSocialFooter"></i></a>
+                    <a class="linkSocial"><i class="fa-brands fa-twitter fa-xl" id="iconoSocialFooter"></i></a>
+                </div>
+            </div>
+            <div class="formalInformation">
+                <div class="firstColumnFormalInfo">
+                    <h3>Express</h3>
+                    <a>Acerca de nosotros</a>
+                    <a>Planes</a>
+                    <a>Ofertas</a>
+                    <a>Politica de Privacidad</a>
+                </div>
+                <div class="secondColumnFormalInfo">
+                    <h3>Contacto</h3>
+                    <a>Ayuda</a>
+                    <a>FAQ</a>
+                    <a>Afiliados</a>
+                </div>
+                <div class="thirdColumnFormalInfo">
+                    <h3>Mas</h3>
+                    <a>Control</a>
+                    <a>Nuestro Blog</a>
+                    <a>Tips</a>
+                </div>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/e80c9c3cc8.js" crossorigin="anonymous"></script>
+        <script src={% static 'js/details.js' %} crossorigin="anonymous"></script>
+    </body>
+</html>
