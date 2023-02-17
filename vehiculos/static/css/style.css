@@ -553,67 +553,33 @@ nav {
     margin-top: -20px;
 }
 
+/* Checkout: Pago */
+
+#rapipago {
+    display: none;
+}
+
 #form-checkout {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
 }
 
-.formDataCheckout {
+.formTotalCheckOut {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    width: 600px;
-    background-color: #fcfcfc;
-    border: 1px solid rgb(211, 211, 211);
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #f1f1f1;
     border-radius: 5px;
-    padding: 5px;
 }
 
-.formDataStyled {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 600px;
-    margin-top: -5px;
+.formTotalCheckOut div:nth-child(1) {
+    margin-left: -10px;
 }
 
-.firstDataList {
-    display: flex;
-    flex-direction: column;
-    margin-top: 5px;
-}
-
-.secureDataList {
-    display: flex;
-    flex-direction: row;
-    margin-left: -25px;
-}
-
-.secureDataList div:nth-child(1) div {
-    margin-right: 5px;
-    width: 100px;
-}
-
-.firstDataList select {
-    padding: 3px;
-}
-
-.secureDataList div:nth-child(2) div {
-    margin-left: 5px;
-    width: 95px;
-}
-
-.secureDataList label {
-    font-size: 11px;
-    max-width: 120px;
-    margin-left: 2.5px;
-}
-
-.secondDataList {
-    display: flex;
-    flex-direction: column;
-    margin-top: 6.5px;
+.formTotalCheckOut div:nth-child(2) {
+    margin-right: -10px;
 }
 
 .container {
@@ -625,36 +591,92 @@ nav {
     padding: 1px 2px;
 }
 
-
-.firstDataList div, .secondDataList div {
-    padding: 2.5px;
-    width: 200px;
+.formListaUno, .formListaDos {
+    display: flex;
+    flex-direction: column;
 }
 
-.secondDataList input, .secondDataList select {
-    margin-top: -2px;
+#form-checkout__cardNumber {
+    width: 240px;
 }
 
-.firstDataList div {
-    padding: 7.5px;
+.formListaUno div {
+    padding: 5px;
+    width: 350px;
 }
 
-.secondDataList input, .secondDataList select {
+.labelPayment {
+    letter-spacing: 1px;
+    font-size: 13.5px;
+    margin-top: 5px;
+}
+
+.formListaUnoCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.formListaUnoCard div div {
+    width: 150px;
+}
+
+.formListaUno input {
+    margin-top: 6px;
     padding: 3px;
-    width: 210px;
-    font-size: 15px;
+    width: 240px;
 }
 
-.secondDataList select {
-    width: 220px;
+.formListaDos input, .formListaDos select {
+    padding: 2px;
 }
 
-
-.describeFormPay {
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    margin-top: 2px;
+.checkBoxAgreePayment {
+    margin-top: 10px;
 }
+
+#form-checkout__submit, #form-checkout__submit__rapi {
+    margin-top: 5px;
+    width: 120px;
+    border: none;
+    background-color: #a060bb;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#rapipago {
+    display: none;
+}
+
+.formRapiOUT {
+    border: 1px solid #f1f1f1;
+    padding: 10px;
+}
+
+.efectivoFormPrimero {
+    display: flex;
+    flex-direction: row;
+}
+
+.efectivoFormPrimero div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+.labelDataRapi {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.labelDataRapi:nth-child(3) select {
+    padding: 1.5px;
+}
+
+/* Checkout: Resumen */
 
 .resumen {
     display: flex;

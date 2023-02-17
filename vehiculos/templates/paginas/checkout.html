@@ -47,31 +47,96 @@
                         <p class="descriptionDocsCheckout">• Ten en cuenta que al momento de retirar el vehiculo, el conductor cuente con licencia de conducir (fisica), papeles relacionados al auto, documentacion valida y una tarjeta de credito relacionada a su nombre para usarla al momento de retirar el vehiculo</p>
                     </div>
                 </div>
-                <!-- FORMULARIO -->
-                <form id="form-checkout" action="/process_payment" method="POST">
-                    <div id="form-checkout__cardNumber" class="container"></div>
-                    <div id="form-checkout__expirationDate" class="container"></div>
-                    <div id="form-checkout__securityCode" class="container"></div>
-                    <input type="text" id="form-checkout__cardholderName" placeholder="Titular do cartão" />
-                    <select id="form-checkout__issuer" name="issuer">
-                      <option value="" disabled selected>Banco emissor</option>
+                <!-- FORMULARIO (Opciones entre pagar con RapiPago y Tarjeta) -->
+                <div class="optionPaymentUser">
+                    <label>¿Con que prefieres pagar?</label>
+                    <select id="optionPayment">
+                        <option value="tarjeta" selected>Pago con Tarjeta</option>
+                        <option value="rapipago">Pago en Efectivo</option>
                     </select>
-                    <select id="form-checkout__installments" name="installments">
-                      <option value="" disabled selected>Cuotas</option>
-                    </select>
-                    <select id="form-checkout__identificationType" name="identificationType">
-                      <option value="" disabled selected>Tipo de documento</option>
-                    </select>
-                    <input type="text" id="form-checkout__identificationNumber" name="identificationNumber" placeholder="Número do documento" />
-                    <input type="email" id="form-checkout__email" name="email" placeholder="E-mail" />
-                
-                    <input id="token" name="token" type="hidden">
-                    <input id="paymentMethodId" name="paymentMethodId" type="hidden">
-                    <input id="transactionAmount" name="transactionAmount" type="hidden" value="100">
-                    <input id="description" name="description" type="hidden" value="{{ checkout.marca }} {{ checkout.marca }}">
-                
-                    <button type="submit" id="form-checkout__submit">Pagar</button>
-                  </form>
+                    <div id="tarjeta">
+                        <form id="form-checkout" action="/process_payment" method="POST">
+                            <div class="formTotalCheckOut">
+                                <div class="formListaUno">
+                                    <label class="labelPayment">NUMERO DE TARJETA</label>
+                                    <div id="form-checkout__cardNumber" class="container"></div>
+                                    <div class="formListaUnoCard">
+                                        <div>
+                                            <label class="labelPayment">FECHA DE EXP.</label>
+                                            <div id="form-checkout__expirationDate" class="container"></div>
+                                        </div>
+                                        <div>
+                                            <label class="labelPayment">COD. SEGURIDAD</label>
+                                            <div id="form-checkout__securityCode" class="container"></div>
+                                        </div>
+                                    </div>
+                                    <label class="labelPayment">CORREO ELECTRONICO</label>
+                                    <input type="email" id="form-checkout__email" name="email" placeholder="E-mail" />
+                                </div>
+                                <div class="formListaDos">
+                                    <label class="labelPayment">TITULAR DE TARJETA</label>
+                                    <input type="text" id="form-checkout__cardholderName" placeholder="Titular de la tarjeta" />
+                                    <select id="form-checkout__issuer" name="issuer" hidden>
+                                        <option value="" disabled selected>Banco emissor</option>
+                                    </select>
+                                    <label class="labelPayment">CUOTAS</label>
+                                    <select id="form-checkout__installments" name="installments">
+                                        <option value="" disabled selected>Cuotas</option>
+                                    </select>
+                                    <label class="labelPayment">TIPO DE DOCUMENTO</label>
+                                    <select id="form-checkout__identificationType" name="identificationType">
+                                        <option value="" disabled selected>Tipo de documento</option>
+                                    </select>
+                                    <label class="labelPayment">NUMERO DE DOCUMENTO</label>
+                                    <input type="text" id="form-checkout__identificationNumber" name="identificationNumber" placeholder="Numero de documento" />
+                                </div>
+                                <input id="token" name="token" type="hidden">
+                                <input id="paymentMethodId" name="paymentMethodId" type="hidden">
+                                <input id="transactionAmount" name="transactionAmount" type="hidden" value="100">
+                                <input id="description" name="description" type="hidden" value="{{ checkout.marca }} {{ checkout.modelo }}">
+                            </div>
+                            <div class="checkBoxAgreePayment">
+                                <input type="checkbox" required />
+                                <label>Leí y acepto las <a href="/">politicas de privacidad</a>, <a href="/">politicas de cancelaciones</a></label>
+                            </div>
+                            <button type="submit" id="form-checkout__submit">Pagar</button>
+                          </form>
+                    </div>
+                    <div id="rapipago">
+                        <form id="form-checkout" class="formRapiOUT" action="/process_payment_rapi" method="post">
+                              <div class="efectivoFormPrimero">
+                                  <div>
+                                    <label class="labelPayment">NOMBRE</label>
+                                    <input id="form-checkout__payerFirstName" name="payerFirstName" type="text">
+                                  </div>
+                                  <div>
+                                    <label class="labelPayment">APELLIDO</label>
+                                    <input id="form-checkout__payerLastName" name="payerLastName" type="text">
+                                  </div>
+                              </div>
+                              <div class="labelDataRapi">
+                                <label class="labelPayment">CORREO ELECTRONICO</label>
+                                <input id="form-checkout__email" name="email" type="text">
+                              </div>
+                              <div class="labelDataRapi">
+                                <label class="labelPayment">TIPO DE DOCUMENTO</label>
+                                <select id="docType" name="identificationType" type="text"></select>
+                              </div>
+                              <div class="labelDataRapi">
+                                <label class="labelPayment">NUMERO DE DOCUMENTO</label>
+                                <input id="form-checkout__identificationNumber" name="identificationNumber" type="text">
+                              </div>
+                            <div>
+                              <div>
+                                <input type="hidden" name="transactionAmount" id="transactionAmount" value="100">
+                                <input type="hidden" name="description" id="description" value="{{ checkout.marca }} {{ checkout.modelo }}">
+                                <br>
+                                <button type="submit" id="form-checkout__submit__rapi">Pagar</button>
+                              </div>
+                            </div>
+                          </form>
+                    </div>
+                </div>
             </div>
             <div class="resumen">
                 <div class="resumenPagoCheckOutPage2">

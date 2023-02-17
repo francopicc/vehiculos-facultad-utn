@@ -66,9 +66,13 @@ def checkout(request):
     }
     return render(request, 'paginas/checkout.html', {'checkout': checkoutData, 'place': placeData, 'price': priceDetails})
 
+
+# Pagos con Tarjeta de Credito y de Debito
 @csrf_exempt
 def payment(request):
     if request.method == "POST":
+        payment_methods_response = sdk.payment_methods().list_all()
+        payment_methods = payment_methods_response["response"]
         payment_data = {
             "transaction_amount": float(request.POST.get("transactionAmount")),
             "token": request.POST.get("token"),
@@ -83,11 +87,31 @@ def payment(request):
                 }
             }
         }
-            
+        
         payment_response = sdk.payment().create(payment_data)
         payment = payment_response["response"]
         print(payment)
-    return render(request, 'paginas/payment.html')
+    return redirect('/')
+
+# Pagos con RapiPago y PagoFacil
+
+@csrf_exempt
+def paymentrapi (request):
+    # Pasar precio final y cosas que faltan
+    if request.method == 'POST':
+        payment_data = {
+            "transaction_amount": 100,
+            "description": "Título del producto",
+            "payment_method_id": "rapipago",
+            "payer": {
+                "email": request.POST.get("email")
+            }
+        }
+
+        payment_response = sdk.payment().create(payment_data)
+        payment = payment_response["response"]
+        print(payment)
+    return redirect('/')
 
 def register(request):
     return render(request, 'paginas/register.html', {'datos': lista})
