@@ -1,12 +1,132 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DS Travel - Detalles del Pago</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500&display=swap" rel="stylesheet">
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
+    </head>
 <body>
-    
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="content-left">
+            <a href="/">Inicio</a>
+            <a href="/acerca">Vuelos</a>
+            <a href="/acerca">Alojamientos</a>
+            <a href="/acerca">Paquetes</a>
+        </div>
+        <div class="content-right">
+            <a class="login" href="/login">Iniciar Sesion</a>
+            <a class="register" href="/register">Registrarse</a>
+        </div>
+    </nav>
+    <!-- DETALLES -->
+    <p class="messageDetailFromPayment">Podras encontrar este detalle de pago junto al comprobante, en tu perfil en la pestaña de compras. ( Perfil > Compras )</p>
+    <div class="detailsFinal">
+        <h2 class="titleDetailsFinal">Detalles del pago</h2>
+        <p>Aqui encontraras mas informacion sobre la compra de tu {{ description }}</p>
+    </div>
+    <div class="paymentStatus" id="efectivoStatus">
+        <div class="cuadroFinalDiv" id="{{ status }}">
+            <div id="paymentFinalDivStatus">
+                <label class="labelPayment">ESTADO DEL PAGO:</label>
+                <div>
+                    {% if status == "pending" %}
+                    <p class="labelPayment" id="labelStatus">PAGO PENDIENTE</p>
+                    {% endif %}
+                    {% if status == "approved" %}
+                    <p class="labelPayment" id="labelStatus">PAGO ACEPTADO</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="detailsPaymentFinal">
+        <div class="cuadrosPaymentFinalResult">
+            <div class="cuadroFinal">
+                <!-- METODO DE PAGO -->
+                <div class="cuadroFinalDiv">
+                    <div class="imgFromFinal">
+                        {% if payment_method == "visa" %}
+                        <img src="https://tentulogo.com/wp-content/uploads/2018/01/visa-logo.jpg" alt="" class="" />
+                        {% endif %}
+                        {% if payment_method == "master" %}
+                        <img src="https://graffica.info/wp-content/uploads/2016/07/Mastercard_Pentagram_Press-3-1024x768.jpg" alt="" class="" />
+                        {% endif %}
+                        {% if payment_method == "amex" %}
+                        <img src="https://www.pngplay.com/wp-content/uploads/9/American-Express-Logo-Transparent-Free-PNG.png" alt="" class="" />
+                        {% endif %}
+                    </div>
+                    <div class="textPaymentChoosen">
+                        <label class="labelPaymentCardTitle">METODO DE PAGO UTILIZADO:</label>
+                        {% if payment_method == "visa" %}
+                        <p class="labelPaymentCard" id="identificatorCard">Tarjeta de Credito: Visa</p>                        {% endif %}
+                        {% if payment_method == "master" %}
+                        <p class="labelPaymentCard" id="identificatorCard">Tarjeta de Credito: Mastercard</p>                        {% endif %}
+                        {% if payment_method == "amex" %}
+                        <p class="labelPaymentCard">Tarjeta de Credito: American Ex.</p>                        {% endif %}
+                    </div>
+                </div>
+                <!-- DETALLE DEL PRECIO -->
+                <div class="cuadroFinalDiv">
+                    <div class="textPaymentChoosenDiv">
+                        <label class="labelPayment">PRECIO DE LA COMPRA:</label>
+                        <p>${{ price }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cuadrosPaymentFinalResult" id="segundaLista">
+            <div class="cuadroFinal" id="buyerDatos">
+                <!-- METODO DE PAGO -->
+                <div class="cuadroFinalDiv">
+                    <div class="textPaymentChoosen">
+                        <label class="labelPaymentCardTitle">DATOS DEL COMPRADOR:</label>
+                        <p class="labelPaymentCard" id="nameCard">Nombre: {{ name }}</p>
+                        <p class="labelPaymentCard">Documento: {{ dni }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="socialInformation">
+            <h1>DS Travel</h1>
+            <p>Siguenos en nuestras redes y enterate de mucho mas.</p>
+            <div class="socialMediaInformation">
+                <a class="linkSocial"><i class="fa-brands fa-facebook fa-xl" id="iconoSocialFooter"></i></a>
+                <a class="linkSocial"><i class="fa-brands fa-instagram fa-xl" id="iconoSocialFooter"></i></a>
+                <a class="linkSocial"><i class="fa-brands fa-twitter fa-xl" id="iconoSocialFooter"></i></a>
+            </div>
+        </div>
+        <div class="formalInformation">
+            <div class="firstColumnFormalInfo">
+                <h3>Express</h3>
+                <a>Acerca de nosotros</a>
+                <a>Planes</a>
+                <a>Ofertas</a>
+                <a>Politica de Privacidad</a>
+            </div>
+            <div class="secondColumnFormalInfo">
+                <h3>Contacto</h3>
+                <a>Ayuda</a>
+                <a>FAQ</a>
+                <a>Afiliados</a>
+            </div>
+            <div class="thirdColumnFormalInfo">
+                <h3>Mas</h3>
+                <a>Control</a>
+                <a>Nuestro Blog</a>
+                <a>Tips</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

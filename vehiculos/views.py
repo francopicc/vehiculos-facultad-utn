@@ -9,6 +9,7 @@ session = SessionStore()
 import mercadopago
 from dotenv import load_dotenv
 import os
+from django.contrib.auth.forms import UserCreationForm
 
 load_dotenv()
 
@@ -64,6 +65,7 @@ def checkout(request):
         'precioximp': request.POST.get("precioFinal"),
         'precioimp': request.POST.get("precioImpuestos")
     }
+    request.session['preciofinalcheckout'] = float(request.POST.get("precioFinal")) + float(request.POST.get("precioImpuestos"))
     return render(request, 'paginas/checkout.html', {'checkout': checkoutData, 'place': placeData, 'price': priceDetails})
 
 
@@ -87,11 +89,24 @@ def payment(request):
                 }
             }
         }
-        
         payment_response = sdk.payment().create(payment_data)
         payment = payment_response["response"]
-        print(payment)
-    return redirect('/')
+        # Editamos la info del auto cuando el pago da el status approved.
+        if payment["status"] == "approved":
+            car_id = request.POST.get("idCarVehiculo")
+            placeData = {
+                'placeName': request.session['lugarRetiro'],
+                'retiro': request.session['fechaRetiro'],
+                'regreso': request.session['fechaRegreso']
+            }
+            autos = Auto.objects.get(id=car_id)
+            autos.reservado = True
+            autos.fechaRetiro = placeData["retiro"]
+            autos.fechaRegreso = placeData["regreso"]
+            autos.idPayment = payment["id"]
+            autos.save()
+        
+    return render(request, 'paginas/payment.html', {"status": payment["status"], "description": payment["description"], "payment_method": payment["payment_method_id"], "payment_type": payment["payment_type_id"], "price": payment["transaction_amount"], "cardFirstNumbers": payment["card"]["last_four_digits"], "dni": payment["card"]["cardholder"]["identification"]["number"], "name": payment["card"]["cardholder"]["name"]})
 
 # Pagos con RapiPago y PagoFacil
 
@@ -99,19 +114,35 @@ def payment(request):
 def paymentrapi (request):
     # Pasar precio final y cosas que faltan
     if request.method == 'POST':
+        price_data = {
+            "price": request.session['preciofinalcheckout']
+        }
         payment_data = {
-            "transaction_amount": 100,
-            "description": "Título del producto",
-            "payment_method_id": "rapipago",
+            "transaction_amount": int(price_data["price"]),
+            "description": request.POST.get("description"),
+            "payment_method_id": request.POST.get("paymentMethod_ID"),
             "payer": {
                 "email": request.POST.get("email")
             }
         }
-
         payment_response = sdk.payment().create(payment_data)
         payment = payment_response["response"]
         print(payment)
-    return redirect('/')
+        if payment["status"] == "approved":
+            car_id = request.POST.get("idCarVehiculo")
+            placeData = {
+                'placeName': request.session['lugarRetiro'],
+                'retiro': request.session['fechaRetiro'],
+                'regreso': request.session['fechaRegreso']
+            }
+            autos = Auto.objects.get(id=car_id)
+            autos.reservado = True
+            autos.fechaRetiro = placeData["retiro"]
+            autos.fechaRegreso = placeData["regreso"]
+            autos.idPayment = payment["id"]
+            autos.save()
+            
+    return render(request, 'paginas/payment_rapi.html', {"status": payment["status"], "description": payment["description"], "payment_method": payment["payment_method_id"], "price": payment["transaction_amount"], "url": payment["transaction_details"]["external_resource_url"]})
 
 def register(request):
-    return render(request, 'paginas/register.html', {'datos': lista})
+    return render(request, 'paginas/register.html')

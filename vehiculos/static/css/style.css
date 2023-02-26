@@ -555,6 +555,21 @@ nav {
 
 /* Checkout: Pago */
 
+.selectPaymentCheckout {
+    display: flex;
+    flex-direction: column;
+}
+
+.efectivoPaymentCheckoutSelect {
+    display: none;
+    flex-direction: column;
+}
+
+#optionPayment, #efectivoSeleccionSelect {
+    width: 280px;
+    padding: 2px;
+}
+
 #rapipago {
     display: none;
 }
@@ -779,6 +794,217 @@ nav {
     color: #ffffff;
     font-size: 15px;
     border-radius: 5px;
+}
+
+/* Pago Exitoso: Tarjeta */
+
+
+
+/* Pago Exitoso: Efectivo */
+
+.messageDetailFromPayment {
+    color: #616161;
+    text-align: center;
+    margin-top: 3em;
+}
+
+.detailsFinal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--color-primario);
+    color: #ffffff;
+    margin-top: 1em;
+    padding: 15px;
+}
+
+.detailsFinal p {
+    margin-top: -15px;
+}
+
+.detailsPaymentFinal {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.titleDetailsFinal {
+    font-size: 35px;
+}
+
+.urlDivPayment {
+    display: flex;
+    justify-content: center;
+}
+
+.urlToGoPaymentEfectivo {
+    color: #ffffff;
+    background-color: #382441;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 13.5px;
+}
+
+.paymentStatus div {
+    display: flex;
+    flex-direction: row;
+    padding: 2.5px;
+    color: #ffffff;
+}
+
+#pending {
+    background-color: #ebeca5;
+}
+
+#approved {
+    background-color: #a5ee88;
+    margin-left: 20px;
+}
+
+#paymentFinalDivStatus {
+    margin-left: 15px;
+}
+
+#labelStatus {
+    margin-top: -10px;
+    margin-left: -2px;
+}
+
+.paymentStatus p {
+    margin-left: 5px;
+}
+
+.detailsPaymentFinal p {
+    margin-top: -10px;
+}
+
+.cuadrosPaymentFinalResult {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.paymentStatus {
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+}
+
+.imgFromFinal div i {
+    margin-top: 25px;
+}
+
+#efectivoStatus {
+    margin-top: 2em;
+}
+
+#paymentFinalDivStatus {
+    display: flex;
+    justify-content: baseline;
+    flex-direction: column;
+}
+
+#paymentFinalDivStatus label {
+    font-weight: bold;
+    font-size: 17.5px;
+}
+
+.cuadroFinal {
+    display: flex;
+    flex-direction: row;
+}
+
+.cuadroFinalDiv {
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #f8f7f7;
+    width: 350px;
+}
+
+.cuadroFinalDiv:nth-child(1) {
+    margin-left: -20px;
+}
+.cuadroFinalDiv:nth-child(2) {
+    margin-left: 20px;
+}
+
+.imgFromFinal img {
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.textPaymentChoosen {
+    display: flex;
+    flex-direction: column;
+}
+
+.textPaymentChoosen label {
+    font-weight: bold;
+    font-size: 17.5px;
+    margin-left: 10px;
+}
+
+.textPaymentChoosen p {
+    margin-top: 1.5px;
+    margin-right: 8em;
+}
+
+.textPaymentChoosenDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.textPaymentChoosenDiv label {
+    font-weight: bold;
+    font-size: 17.5px;
+    margin-left: 5px;
+}
+
+.priceCuadroFinalDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.textPaymentChoosenDiv p {
+    font-size: 20px;
+    margin-left: -5.5em;
+    margin-top: -2px;
+}
+
+.labelPaymentCardTitle {
+    letter-spacing: 1px;
+    font-size: 13.5px;
+    margin-top: 5px;
+    margin-right: 66.5px;
+}
+
+.labelPaymentCard {
+    letter-spacing: 1px;
+    font-size: 13.5px;
+    margin-top: 5px;
+    width: 210px;
+}
+
+#segundaLista div {
+    margin-top: 12px;
+}
+
+.cuadroFinalDiv {
+    margin-left: 40px;
+}
+
+#buyerDatos div div {
+    margin-top: -5px;
+    margin-left: -20px;
+}
+
+#nameCard {
+    margin-left: -18.5px;
 }
 
 /* Ofertas (Scroll Home) */

@@ -69,9 +69,11 @@ class Auto (models.Model):
     puertas = models.IntegerField(verbose_name="Cantidad de Puertas")
     automatico = models.BooleanField(verbose_name="Transmision Automatica")
     reservado = models.BooleanField(verbose_name="Esta reservado:", default=False)
-    lugarRetiro = models.CharField(verbose_name="Lugar de Retiro", max_length=50,default="")
+    lugarRetiro = models.CharField(verbose_name="Lugar de Retiro", max_length=50,default="", null=True)
     fechaRetiro = models.DateTimeField(verbose_name="Fecha de Retiro", blank=True, null=True)
     fechaRegreso = models.DateTimeField(verbose_name="Fecha de Regreso", blank=True, null=True)
+    # El idPayment servira para extraer los datos del pago una vez que estemos en la pestaña del perfil para ver los detalles.
+    idPayment = models.CharField(verbose_name="ID del pago", blank=True, null=True, max_length=50)
 
     def __str__(self):
         fila = self.nombre + " - " + self.marca + " " + self.modelo

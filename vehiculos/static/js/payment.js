@@ -5,17 +5,37 @@ const precioximp2 = Number((document.getElementById("precioximp").textContent).r
 const final = (precioimp2 + precioximp2).toString()
 
 document.getElementById("transactionAmount").value = final
+document.getElementById("transactionAmount_RAPI").value = final
 
 // Configuracion del sistema de pagos
 
 document.getElementById("optionPayment").addEventListener("change", (evt) => {
-  console.log(evt.target.value)
   if(evt.target.value == "tarjeta") {
     document.getElementById("tarjeta").style.display = "initial"
     document.getElementById("rapipago").style.display = "none"
+    document.getElementById("efectivoSelection").style.display = "none"
   } else {
     document.getElementById("rapipago").style.display = "flex"
     document.getElementById("tarjeta").style.display = "none"
+    document.getElementById("efectivoSelection").style.display = "flex"
+  }
+})
+
+// Configuracion de pago en efectivo
+
+// Este pequeño trozo de codigo es solo para comprobar si se reinicia la pagina y si no llega a detectar el evento change.
+
+if(document.getElementById("efectivoSeleccionSelect").value == "pagoFacilCheck") {
+  document.getElementById("payment_method").value = "pagofacil"
+} else {
+  document.getElementById("payment_method").value = "rapipago"
+}
+
+document.getElementById("efectivoSeleccionSelect").addEventListener("change", (evt) => {
+  if(evt.target.value == "rapipagoCheck") {
+    document.getElementById("payment_method").value = "rapipago"
+  } else {
+    document.getElementById("payment_method").value = "pagofacil"
   }
 })
 
