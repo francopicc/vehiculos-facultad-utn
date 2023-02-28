@@ -81,6 +81,54 @@ nav {
     background-color: var(--color-primario-oscuro);
 }
 
+.dropdown img {
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.dropbtn {
+  color: white;
+  font-size: 12px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 125px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 6.5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 13px 18px;
+  text-decoration: none;
+  display: block;
+  border-radius: 6.5px;
+  text-align: left;
+  width: 125px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 /* FALTA TODAVIA Entrada: contiene titulo, descripcion, imagenes, etc. (solo diseño) */
 
 .titleEntrada {
@@ -1272,7 +1320,8 @@ nav {
 .registroForm {
     display: grid;
     /* grid-template-columns: 15em 15em 15em 15em; */
-    grid-template-columns: repeat(4, 15em);
+    grid-template-columns: repeat(3, 15em);
+    grid-gap: 5px;
     align-items: center;
     justify-content: space-evenly;
 }
@@ -1280,7 +1329,8 @@ nav {
 .registroForm div:last-child {
     justify-self: center;
     grid-column: 1 / span 4;
-    width: 500pxpx;
+    width: 500px;
+    align-items: center;
 }
 
 .dato {
@@ -1290,6 +1340,11 @@ nav {
 }
 
 .dato input {
+    padding: 3.5px;
+    font-size: 16.5px;
+}
+
+.dato select {
     padding: 3.5px;
     font-size: 16.5px;
 }
@@ -1321,7 +1376,7 @@ nav {
     color: #ffffff;
     border-radius: 5px;
     padding: 8px;
-    width: 25%;
+    width: 100px;
     font-size: 15px;
     margin-top: 15px;
 }
@@ -1329,6 +1384,11 @@ nav {
 .termsAndButton button:hover {
     transition: 0.5s;
     background-color: var(--color-primario-oscuro);
+}
+
+.centerButtonRegister {
+    display: flex;
+    justify-content: center;
 }
 
 /* FOOTER */

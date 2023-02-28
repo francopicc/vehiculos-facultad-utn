@@ -23,6 +23,7 @@ document.getElementById("daysCountBetween").innerText = "| " + diffDays + " dias
 const impuestos = 105;
 
 const precioFinalReserva = Number(document.getElementById("precioFinalDiaValor").textContent) * diffDays 
+
 // Calculamos el precio por dias
 document.getElementById("precioFinalDiaTexto").innerText = "Precio por " + diffDays + " dias"
 document.getElementById("precioFinalDiaValor").innerText = "$" + precioFinalReserva

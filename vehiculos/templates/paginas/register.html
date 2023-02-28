@@ -14,117 +14,39 @@
 <body>
     <!-- RECORDAR QUE ESTO ES UNA TEMPLATE NO LA PAGINA COMPLETA -->
     <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="content-left">
-            <a href="/">Inicio</a>
-            <a href="/acerca">Vuelos</a>
-            <a href="/acerca">Alojamientos</a>
-            <a href="/acerca">Paquetes</a>
-        </div>
-        <div class="content-right">
-            <a class="login" href="/login">Iniciar Sesion</a>
-            <a class="register" href="/register">Registrarse</a>
-        </div>
-    </nav>
+    {% include 'navbar.html' %}
     <!-- REGISTER -->
     <div class="entryRegister">
         <h1>Registrarse</h1>
         <h3 class="muted">Por favor complete todos los campos.</h3>
     </div>
     <div class="registroFormDiv">
-        <form class="registroForm">
+        <form class="registroForm" method="POST" action="/register">
+            {% csrf_token %}
             <div class="dato">
-                <label>Nombre</label>
-                <input type="text" required>
+                <label>Correo Electronico</label>
+                <input type="email" name="email" />
             </div>
             <div class="dato">
-                <label>Apellido</label>
-                <input type="text" required>
+                <label>Contraseña</label>
+                <input type="password" name="password" />
             </div>
-            <div class="dato">
-                <label>Fecha de nacimiento</label>
-                <input type="date" required>
-            </div>
-            <div class="dato">
-                <label>Telefono</label>
-                <input type="number" required>
-            </div>
-            <div class="dato">
-                <label>Tipo de documento</label>
-                <input type="text" required>
-            </div>
-            <div class="dato">
-                <label>Numero de documento</label>
-                <input type="number" required>
-            </div>
-            <div class="dato">
-                <label>País</label>
-                <input type="text" required>
-            </div>
-            <div class="dato">
-                <label>Estado/Provincia</label>
-                <input type="text" required>
-            </div>
-            <div class="dato">
-                <label>Calle</label>
-                <input type="text" required>
-            </div>
-            <div class="dato">
-                <label>Altura</label>
-                <input type="text" required>
-            </div>
-            <div class="dato">
-                <label>Ciudad</label>
-                <input type="text" required>
-            </div>
-            <div class="dato">
-                <label>Codigo Postal</label>
-                <input type="text" required>
-            </div>
+            {{ formulario.as_div }}
+            <input type="hidden" name="namesurnameid" id="namesurname"/>
             <div class="termsAndButton">
                 <p class="muted">Antes de continuar, por favor lee nuestros <strong><a class="link">Terminos y Condiciones</a></strong></p>
                 <div class="confirm">
                     <input type="checkbox" class="termsAgree" required/>
                     <p>He leido y acepto los terminos y condiciones de uso.</p>
                 </div>
-                <button>Continuar</button>
+                <button type="submitButtonRegister" id="submitButtonRegister">Continuar</button>
             </div>
         </form>
     </div>
     <!-- FOOTER -->
-    <div class="footer">
-        <div class="socialInformation">
-            <h1>DS Travel</h1>
-            <p>Siguenos en nuestras redes y enterate de mucho mas.</p>
-            <div class="socialMediaInformation">
-                <a class="linkSocial"><i class="fa-brands fa-facebook fa-xl" id="iconoSocialFooter"></i></a>
-                <a class="linkSocial"><i class="fa-brands fa-instagram fa-xl" id="iconoSocialFooter"></i></a>
-                <a class="linkSocial"><i class="fa-brands fa-twitter fa-xl" id="iconoSocialFooter"></i></a>
-            </div>
-        </div>
-        <div class="formalInformation">
-            <div class="firstColumnFormalInfo">
-                <h3>Express</h3>
-                <a>Acerca de nosotros</a>
-                <a>Planes</a>
-                <a>Ofertas</a>
-                <a>Politica de Privacidad</a>
-            </div>
-            <div class="secondColumnFormalInfo">
-                <h3>Contacto</h3>
-                <a>Ayuda</a>
-                <a>FAQ</a>
-                <a>Afiliados</a>
-            </div>
-            <div class="thirdColumnFormalInfo">
-                <h3>Mas</h3>
-                <a>Control</a>
-                <a>Nuestro Blog</a>
-                <a>Tips</a>
-            </div>
-        </div>
-    </div>
+    {% include 'footer.html' %}
     <!-- FONT AWESOME: importa iconos -->
     <script src="https://kit.fontawesome.com/e80c9c3cc8.js" crossorigin="anonymous"></script>
+    <script src={% static 'js/register.js' %}></script>
 </body>
 </html>

@@ -16,18 +16,7 @@
 <body>
     <!-- RECORDAR QUE ESTO ES UNA TEMPLATE NO LA PAGINA COMPLETA -->
     <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="content-left">
-            <a href="/">Inicio</a>
-            <a href="/acerca">Vuelos</a>
-            <a href="/acerca">Alojamientos</a>
-            <a href="/acerca">Paquetes</a>
-        </div>
-        <div class="content-right">
-            <a class="login" href="/login">Iniciar Sesion</a>
-            <a class="register" href="/register">Registrarse</a>
-        </div>
-    </nav>
+    {% include 'navbar.html' %}
     <!-- ENTRADA -->
     <div class="entrada">
         <h1 class="titleEntrada">DS TRAVEL</h1>

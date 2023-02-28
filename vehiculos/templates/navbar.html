@@ -1,0 +1,31 @@
+<nav class="navbar">
+    {% if user.is_authenticated %}
+    <div class="content-left">
+        <a href="/">Inicio</a>
+        <a href="/acerca">Vuelos</a>
+        <a href="/acerca">Alojamientos</a>
+        <a href="/acerca">Paquetes</a>
+    </div>
+    <div class="content-right">
+        <div class="dropdown">
+            <img src="https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png" width="32.5" alt="" class="dropbtn" />
+            <div class="dropdown-content">
+                <a href="/user/compras">Compras</a>
+                <a href="/logout">Cerrar Sesion</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if user.is_authenticated == False %}
+    <div class="content-left">
+        <a href="/">Inicio</a>
+        <a href="/acerca">Vuelos</a>
+        <a href="/acerca">Alojamientos</a>
+        <a href="/acerca">Paquetes</a>
+    </div>
+    <div class="content-right">
+        <a class="login" href="/login">Iniciar Sesion</a>
+        <a class="register" href="/register">Registrarse</a>
+    </div>
+    {% endif %}
+</nav>

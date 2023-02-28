@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
@@ -12,4 +12,6 @@ urlpatterns = [
     path('order/checkout', views.checkout, name='checkout'),
     path('order/success_card', views.payment, name='payment'),
     path('order/success_cash', views.paymentrapi, name="payment-rapi"),
+    path('logout', views.signout, name="signout"),
+    path('user/compras', views.compras, name="compras"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

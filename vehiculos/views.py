@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Auto
-from .forms import AutoForm
+from .models import Auto, Account
+from .forms import AutoForm, AccountForm
 from django.contrib.sessions.backends.db import SessionStore
 from django.views.decorators.csrf import csrf_exempt
 import locale
@@ -9,7 +9,13 @@ session = SessionStore()
 import mercadopago
 from dotenv import load_dotenv
 import os
+from django.contrib.auth import logout, authenticate
+from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
 load_dotenv()
 
@@ -19,6 +25,7 @@ sdk = mercadopago.SDK(os.getenv("MERCADO_PAGO_SAMPLE_ACCESS_TOKEN"))
 
 def inicio(request):
     formulario = AutoForm()
+    # print(user)
     if request.method == 'POST':
         if formulario.is_valid:
             formulario = AutoForm(request.POST)
@@ -34,9 +41,7 @@ def inicio(request):
 def acerca(request):
     return render(request, 'paginas/acerca.html')
 
-def login(request):
-    return render(request, 'paginas/login.html')
-
+@login_required
 def details(request):
     # lista = Auto.objects.all().filter(nombre=)
     if request.method == 'POST':
@@ -50,6 +55,7 @@ def details(request):
     }
     return render(request, 'paginas/details.html', {'checkout': detailsData, 'place': placeData, 'id': datos})
 
+@login_required
 def checkout(request):
     if request.method == 'POST':
         datos = request.POST.get('idFromVehiculo')
@@ -68,8 +74,8 @@ def checkout(request):
     request.session['preciofinalcheckout'] = float(request.POST.get("precioFinal")) + float(request.POST.get("precioImpuestos"))
     return render(request, 'paginas/checkout.html', {'checkout': checkoutData, 'place': placeData, 'price': priceDetails})
 
-
 # Pagos con Tarjeta de Credito y de Debito
+@login_required
 @csrf_exempt
 def payment(request):
     if request.method == "POST":
@@ -91,6 +97,7 @@ def payment(request):
         }
         payment_response = sdk.payment().create(payment_data)
         payment = payment_response["response"]
+        print(payment)
         # Editamos la info del auto cuando el pago da el status approved.
         if payment["status"] == "approved":
             car_id = request.POST.get("idCarVehiculo")
@@ -104,12 +111,13 @@ def payment(request):
             autos.fechaRetiro = placeData["retiro"]
             autos.fechaRegreso = placeData["regreso"]
             autos.idPayment = payment["id"]
+            autos.userWhoPayed = str(User.objects.get(username=request.user.username))
             autos.save()
-        
+            
     return render(request, 'paginas/payment.html', {"status": payment["status"], "description": payment["description"], "payment_method": payment["payment_method_id"], "payment_type": payment["payment_type_id"], "price": payment["transaction_amount"], "cardFirstNumbers": payment["card"]["last_four_digits"], "dni": payment["card"]["cardholder"]["identification"]["number"], "name": payment["card"]["cardholder"]["name"]})
 
 # Pagos con RapiPago y PagoFacil
-
+@login_required
 @csrf_exempt
 def paymentrapi (request):
     # Pasar precio final y cosas que faltan
@@ -127,7 +135,6 @@ def paymentrapi (request):
         }
         payment_response = sdk.payment().create(payment_data)
         payment = payment_response["response"]
-        print(payment)
         if payment["status"] == "approved":
             car_id = request.POST.get("idCarVehiculo")
             placeData = {
@@ -140,9 +147,58 @@ def paymentrapi (request):
             autos.fechaRetiro = placeData["retiro"]
             autos.fechaRegreso = placeData["regreso"]
             autos.idPayment = payment["id"]
+            autos.userWhoPayed = str(User.objects.get(username=request.user.username))
             autos.save()
             
     return render(request, 'paginas/payment_rapi.html', {"status": payment["status"], "description": payment["description"], "payment_method": payment["payment_method_id"], "price": payment["transaction_amount"], "url": payment["transaction_details"]["external_resource_url"]})
 
+# Parte Usuarios - Registro
+
+@csrf_exempt
 def register(request):
-    return render(request, 'paginas/register.html')
+    accountf = AccountForm()
+    if request.method == 'POST':
+        accountf = AccountForm(request.POST or None)
+        if accountf.is_valid():
+            try:
+                userTest = User.objects.create_user(
+                    username = request.POST.get("email"),
+                    password = request.POST.get("password"),
+                    first_name = request.POST.get("name"),
+                    last_name= request.POST.get("surname"),
+                )
+                userTest.save()
+                accountf.save()
+                auth_login(request, userTest)
+                return redirect('/')
+            except IntegrityError():
+                return HttpResponse("La cuenta tuvo errores al crear")
+    return render(request, 'paginas/register.html', {'formulario': accountf})
+
+# Cerrar Sesion
+
+@login_required
+def signout(request):
+    logout(request)
+    return redirect('/')
+
+# Login
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'paginas/login.html')
+    else:
+        user = authenticate(request, username = request.POST["email"], password = request.POST["password"])
+        if user is None:
+            return HttpResponse("Error")
+        else:
+            auth_login(request, user)
+            return redirect('/')
+        return render(request, 'paginas/login.html')
+
+def compras(request):
+    if request.method == 'GET':
+        username = str(User.objects.get(username=request.user.username))
+        vehiculo = Auto.objects.filter(userWhoPayed=username)
+
+    return render(request, 'paginas/compras.html', {'compra': vehiculo})

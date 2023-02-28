@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DS Travel</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@500&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <!-- NAVBAR -->
+    {% include 'navbar.html' %}
+    <!-- TABLA DE COMPRAS -->
+    <table class="default">
+        <tr>
+            <th>Auto</th>
+            <th>Estado del pago</th>
+            <th>Detalles</th>
+        </tr>
+        {% for campo in compra %}
+        <tr>
+            <td>{{ campo.marca }} {{ campo.modelo }}</td>
+            <td>{{ campo.status }}</td>
+            <td><a></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <!-- FOOTER -->
+    {% include 'footer.html' %}
+    <!-- SCRIPTS -->
+</body>
+</html>
