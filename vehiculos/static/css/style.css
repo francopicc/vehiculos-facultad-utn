@@ -81,7 +81,18 @@ nav {
     background-color: var(--color-primario-oscuro);
 }
 
-.dropdown img {
+.userInfoNav {
+    display: flex;
+    flex-direction: row;
+}
+
+.userInfoNav p {
+    color: #616161;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.dropdown div:nth-child(1) img {
     border-radius: 100%;
     object-fit: cover;
 }
@@ -1250,6 +1261,12 @@ nav {
     justify-content: space-around;
 }
 
+.linkOAUTH {
+    color: var(--color-primario);
+    background-color: transparent;
+    border: none;
+}
+
 .imgLogin {
     position: relative;
     text-align: center;
@@ -1450,4 +1467,33 @@ nav {
     display: flex;
     flex-direction: column;
     margin-left: 50px;
+}
+
+/* Compras: Lista de Compras del usuario */
+
+.tableComprasUser {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+th {
+    width: 190px;
+    padding: 5px;
+    border: 1px solid #cccccc;
+    border-bottom: 2.5px solid #cccccc;
+    color: #3b3b3b;
+}
+
+td {
+    text-align: center;
+    margin-top: 5px;
+    border: 1px solid #cccccc;
+}
+
+.detailsTableLink {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    color: var(--color-primario-oscuro);
 }

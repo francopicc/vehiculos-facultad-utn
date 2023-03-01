@@ -138,6 +138,7 @@
                                 <input type="checkbox" required />
                                 <label>Leí y acepto las <a href="/">politicas de privacidad</a>, <a href="/">politicas de cancelaciones</a></label>
                             </div>
+                            <input type="hidden" name="idCarVehiculo" value="{{ checkout.id }}">
                             <input type="text" name="transactionAmount" id="transactionAmount_RAPI">
                             <button type="submit" id="form-checkout__submit__rapi" ondblclick="this.disabled = true">Pagar</button>
                           </form>

@@ -15,22 +15,37 @@
     <!-- NAVBAR -->
     {% include 'navbar.html' %}
     <!-- TABLA DE COMPRAS -->
-    <table class="default">
-        <tr>
+    <p style="text-align: center; color: #cccccc;">Los pagos en espera de dinero pueden ser tomados por otros usuarios, ya que mientras el usuario no implique ninguno de sus bienes, el vehiculo no estara a nombre suyo.</p>
+    <table class="tableComprasUser">
+        <tr class="titulosTable">
             <th>Auto</th>
             <th>Estado del pago</th>
+            <th>Precio</th>
             <th>Detalles</th>
         </tr>
         {% for campo in compra %}
         <tr>
             <td>{{ campo.marca }} {{ campo.modelo }}</td>
-            <td>{{ campo.status }}</td>
-            <td><a></a></td>
+            <td>
+                {% if campo.status == "approved" %}
+                Aprobado
+                {% endif %}
+                {% if campo.status == "pending" %}
+                En Espera
+                {% endif %}
+            </td>
+            <td>${{ campo.precio }}</td>
+            <td>
+                <form action="http://localhost:8000/user/compras/order/{{ campo.idPayment }}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ campo.idPayment }}" name="check_id" />
+                    <button class="detailsTableLink">Ver detalles</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </table>
-    <!-- FOOTER -->
-    {% include 'footer.html' %}
     <!-- SCRIPTS -->
+    <script src="https://kit.fontawesome.com/e80c9c3cc8.js" crossorigin="anonymous"></script>
 </body>
 </html>

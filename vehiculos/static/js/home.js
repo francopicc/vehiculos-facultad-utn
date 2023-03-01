@@ -18,7 +18,8 @@ document.getElementsByName("fechaRegreso")[0].type = 'datetime-local'
 // Tambien se puede hacer mediante sessionStorage (creeria un toque mas seguro)
 const submitDivCars = () => {
     console.log('activado')
-    if(document.referrer == "http://127.0.0.1:8000/") {
+    if(document.referrer == "http://127.0.0.1:8000/" || document.referrer == "http://localhost:8000/") {
+        console.log("salio bien")
         if(window.location.hash == "#show") {
             const divCars = document.getElementsByClassName("autosDisponiblesDiv")[0]
             divCars.style.display = "initial"

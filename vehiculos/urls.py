@@ -14,4 +14,5 @@ urlpatterns = [
     path('order/success_cash', views.paymentrapi, name="payment-rapi"),
     path('logout', views.signout, name="signout"),
     path('user/compras', views.compras, name="compras"),
+    path('user/compras/order/<int:or_id>', views.compras_details, name="compras_details"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,8 +3,7 @@ Este proyecto tiene como idea principal, un sitio web que permita la gestion de 
 
 Para iniciar el proyecto, se introduce esto en la consola de comandos preferida:
 ```
-cd vehiculo
-python3 manage.py runserver
+python3 manage.py runserver localhost:8000
 ```
 
 ## Algunos Tips

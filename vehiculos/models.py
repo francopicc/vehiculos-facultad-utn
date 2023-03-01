@@ -38,6 +38,7 @@ OPCIONES_CIUDAD = (
 class Auto (models.Model):
     # Se podria añadir un ID aca porque es mas facil identificar el vehiculo
     id = models.AutoField(primary_key=True)
+    status = models.CharField(max_length=20, verbose_name="Status del pago", blank=True, null=True)
     nombre = models.CharField(max_length=60, verbose_name="Nombre", default="")
     marca = models.CharField(max_length=25, verbose_name="Marca", default="")
     modelo = models.CharField(max_length=50, verbose_name="Modelo", default="")
@@ -57,7 +58,11 @@ class Auto (models.Model):
     # El idPayment servira para extraer los datos del pago una vez que estemos en la pestaña del perfil para ver los detalles.
     idPayment = models.CharField(verbose_name="ID del pago", blank=True, null=True, max_length=50)
     userWhoPayed = models.CharField(verbose_name="Comprador", blank=True, null=True, max_length=40)
-
+    
+    def delete(self, using=None, keep_parents=False):
+          self.imagenes.storage.delete(self.imagen.name)
+          super().delete()
+     
     def __str__(self):
         fila = self.nombre + " - " + self.marca + " " + self.modelo
         return fila

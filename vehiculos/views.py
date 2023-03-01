@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
+import requests
 
 load_dotenv()
 
@@ -44,34 +45,40 @@ def acerca(request):
 @login_required
 def details(request):
     # lista = Auto.objects.all().filter(nombre=)
-    if request.method == 'POST':
-        datos = request.POST.get('idFromVehiculo')
-        detailsData = Auto.objects.get(id=datos)
-    # Informacion que recibimos para completar la data de lugar y fecha
-    placeData = {
+    try:
+        if request.method == 'POST':
+            datos = request.POST.get('idFromVehiculo')
+            detailsData = Auto.objects.get(id=datos)
+        # Informacion que recibimos para completar la data de lugar y fecha
+        placeData = {
         'placeName': request.session['lugarRetiro'],
         'retiro': request.session['fechaRetiro'],
         'regreso': request.session['fechaRegreso']
-    }
+        }
+    except:
+        return redirect('/')
     return render(request, 'paginas/details.html', {'checkout': detailsData, 'place': placeData, 'id': datos})
 
 @login_required
 def checkout(request):
-    if request.method == 'POST':
-        datos = request.POST.get('idFromVehiculo')
-        checkoutData = Auto.objects.get(id=datos)
-    # Detalles del lugar seleccionado en el form de home
-    placeData = {
-        'placeName': request.session['lugarRetiro'],
-        'retiro': request.session['fechaRetiro'],
-        'regreso': request.session['fechaRegreso']
-    }
-    # Precios retirados de la pagina 'details'
-    priceDetails = {
-        'precioximp': request.POST.get("precioFinal"),
-        'precioimp': request.POST.get("precioImpuestos")
-    }
-    request.session['preciofinalcheckout'] = float(request.POST.get("precioFinal")) + float(request.POST.get("precioImpuestos"))
+    try:
+        if request.method == 'POST':
+            datos = request.POST.get('idFromVehiculo')
+            checkoutData = Auto.objects.get(id=datos)
+        # Detalles del lugar seleccionado en el form de home
+        placeData = {
+            'placeName': request.session['lugarRetiro'],
+            'retiro': request.session['fechaRetiro'],
+            'regreso': request.session['fechaRegreso']
+        }
+        # Precios retirados de la pagina 'details'
+        priceDetails = {
+            'precioximp': request.POST.get("precioFinal"),
+            'precioimp': request.POST.get("precioImpuestos")
+        }
+        request.session['preciofinalcheckout'] = float(request.POST.get("precioFinal")) + float(request.POST.get("precioImpuestos"))
+    except:
+        return redirect('/')
     return render(request, 'paginas/checkout.html', {'checkout': checkoutData, 'place': placeData, 'price': priceDetails})
 
 # Pagos con Tarjeta de Credito y de Debito
@@ -79,41 +86,49 @@ def checkout(request):
 @csrf_exempt
 def payment(request):
     if request.method == "POST":
-        payment_methods_response = sdk.payment_methods().list_all()
-        payment_methods = payment_methods_response["response"]
-        payment_data = {
-            "transaction_amount": float(request.POST.get("transactionAmount")),
-            "token": request.POST.get("token"),
-            "description": request.POST.get("description"),
-            "installments": int(request.POST.get("installments")),
-            "payment_method_id": request.POST.get("paymentMethodId"),
-            "payer": {
-                "email": request.POST.get("email"),
-                "identification": {
-                    "type": request.POST.get("identificationType"), 
-                    "number": request.POST.get("identificationNumber")
+        try:
+            payment_methods_response = sdk.payment_methods().list_all()
+            payment_methods = payment_methods_response["response"]
+            payment_data = {
+                "transaction_amount": float(request.POST.get("transactionAmount")),
+                "token": request.POST.get("token"),
+                "description": request.POST.get("description"),
+                "installments": int(request.POST.get("installments")),
+                "payment_method_id": request.POST.get("paymentMethodId"),
+                "payer": {
+                    "email": request.POST.get("email"),
+                    "identification": {
+                        "type": request.POST.get("identificationType"), 
+                        "number": request.POST.get("identificationNumber")
+                    }
                 }
             }
-        }
-        payment_response = sdk.payment().create(payment_data)
-        payment = payment_response["response"]
-        print(payment)
-        # Editamos la info del auto cuando el pago da el status approved.
-        if payment["status"] == "approved":
-            car_id = request.POST.get("idCarVehiculo")
-            placeData = {
-                'placeName': request.session['lugarRetiro'],
-                'retiro': request.session['fechaRetiro'],
-                'regreso': request.session['fechaRegreso']
-            }
-            autos = Auto.objects.get(id=car_id)
-            autos.reservado = True
-            autos.fechaRetiro = placeData["retiro"]
-            autos.fechaRegreso = placeData["regreso"]
-            autos.idPayment = payment["id"]
-            autos.userWhoPayed = str(User.objects.get(username=request.user.username))
-            autos.save()
-            
+            payment_response = sdk.payment().create(payment_data)
+            payment = payment_response["response"]
+            print(payment)
+            # Editamos la info del auto cuando el pago da el status approved.
+            if payment["status"] == "pending":
+                # Solo indicamos que alguien intento comprar el auto (pero sigue disponible)
+                autos.userWhoPayed = str(User.objects.get(username=request.user.username))
+                autos.status = payment["status"]
+                autos.save()
+            if payment["status"] == "approved":
+                car_id = request.POST.get("idCarVehiculo")
+                placeData = {
+                    'placeName': request.session['lugarRetiro'],
+                    'retiro': request.session['fechaRetiro'],
+                    'regreso': request.session['fechaRegreso']
+                }
+                autos = Auto.objects.get(id=car_id)
+                autos.reservado = True
+                autos.fechaRetiro = placeData["retiro"]
+                autos.fechaRegreso = placeData["regreso"]
+                autos.idPayment = payment["id"]
+                autos.status = payment["status"]
+                autos.userWhoPayed = str(User.objects.get(username=request.user.username))
+                autos.save()
+        except KeyError as e:
+            return redirect('/')
     return render(request, 'paginas/payment.html', {"status": payment["status"], "description": payment["description"], "payment_method": payment["payment_method_id"], "payment_type": payment["payment_type_id"], "price": payment["transaction_amount"], "cardFirstNumbers": payment["card"]["last_four_digits"], "dni": payment["card"]["cardholder"]["identification"]["number"], "name": payment["card"]["cardholder"]["name"]})
 
 # Pagos con RapiPago y PagoFacil
@@ -122,34 +137,49 @@ def payment(request):
 def paymentrapi (request):
     # Pasar precio final y cosas que faltan
     if request.method == 'POST':
-        price_data = {
-            "price": request.session['preciofinalcheckout']
-        }
-        payment_data = {
-            "transaction_amount": int(price_data["price"]),
-            "description": request.POST.get("description"),
-            "payment_method_id": request.POST.get("paymentMethod_ID"),
-            "payer": {
-                "email": request.POST.get("email")
+        try:
+            price_data = {
+                "price": request.session['preciofinalcheckout']
             }
-        }
-        payment_response = sdk.payment().create(payment_data)
-        payment = payment_response["response"]
-        if payment["status"] == "approved":
-            car_id = request.POST.get("idCarVehiculo")
-            placeData = {
-                'placeName': request.session['lugarRetiro'],
-                'retiro': request.session['fechaRetiro'],
-                'regreso': request.session['fechaRegreso']
+            payment_data = {
+                "transaction_amount": int(price_data["price"]),
+                "description": request.POST.get("description"),
+                "payment_method_id": request.POST.get("paymentMethod_ID"),
+                "payer": {
+                    "email": request.POST.get("email")
+                }
             }
-            autos = Auto.objects.get(id=car_id)
-            autos.reservado = True
-            autos.fechaRetiro = placeData["retiro"]
-            autos.fechaRegreso = placeData["regreso"]
-            autos.idPayment = payment["id"]
-            autos.userWhoPayed = str(User.objects.get(username=request.user.username))
-            autos.save()
-            
+            payment_response = sdk.payment().create(payment_data)
+            payment = payment_response["response"]
+            print(payment)
+            if payment["status"] == "pending":
+                car_id = request.POST.get("idCarVehiculo")
+                print(car_id)
+                autos = Auto.objects.get(id=car_id)
+                # Solo indicamos que alguien intento comprar el auto (pero sigue disponible)
+                autos.userWhoPayed = str(User.objects.get(username=request.user.username))
+                autos.status = payment["status"]
+                autos.idPayment = payment["id"]
+                autos.save()
+
+            if payment["status"] == "approved":
+                car_id = request.POST.get("idCarVehiculo")
+                placeData = {
+                    'placeName': request.session['lugarRetiro'],
+                    'retiro': request.session['fechaRetiro'],
+                    'regreso': request.session['fechaRegreso']
+                }
+                autos = Auto.objects.get(id=car_id)
+                autos.reservado = True
+                autos.fechaRetiro = placeData["retiro"]
+                autos.fechaRegreso = placeData["regreso"]
+                autos.idPayment = payment["id"]
+                # lanzamos el status approved
+                autos.status = payment["status"]
+                autos.userWhoPayed = str(User.objects.get(username=request.user.username))
+                autos.save()
+        except KeyError as e:
+            return redirect('/')
     return render(request, 'paginas/payment_rapi.html', {"status": payment["status"], "description": payment["description"], "payment_method": payment["payment_method_id"], "price": payment["transaction_amount"], "url": payment["transaction_details"]["external_resource_url"]})
 
 # Parte Usuarios - Registro
@@ -173,6 +203,8 @@ def register(request):
                 return redirect('/')
             except IntegrityError():
                 return HttpResponse("La cuenta tuvo errores al crear")
+    if request.user.is_authenticated:
+        return redirect('/')
     return render(request, 'paginas/register.html', {'formulario': accountf})
 
 # Cerrar Sesion
@@ -194,11 +226,28 @@ def login(request):
         else:
             auth_login(request, user)
             return redirect('/')
+        if request.user.is_authenticated:
+            return redirect('/')
         return render(request, 'paginas/login.html')
 
+@login_required
 def compras(request):
     if request.method == 'GET':
         username = str(User.objects.get(username=request.user.username))
         vehiculo = Auto.objects.filter(userWhoPayed=username)
 
     return render(request, 'paginas/compras.html', {'compra': vehiculo})
+
+@login_required
+def compras_details(request, or_id):
+    # enviar por post mediante un form
+    if request.method == 'GET':
+        return redirect('/')
+    if request.method == 'POST':
+        usernameToCheck = str(User.objects.get(username=request.user.username))
+        print(usernameToCheck)
+        idToCheck = request.POST["check_id"]
+        vehiculo = Auto.objects.filter(idPayment=idToCheck)
+        if str(usernameToCheck) in str(vehiculo[0]):
+            return redirect('/')
+    return render(request, 'paginas/orderDetails.html')
