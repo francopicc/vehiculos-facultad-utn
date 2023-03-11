@@ -137,7 +137,7 @@ def payment(request):
 def paymentrapi (request):
     # Pasar precio final y cosas que faltan
     if request.method == 'POST':
-        try:
+        if request.user.is_authenticated:
             price_data = {
                 "price": request.session['preciofinalcheckout']
             }
@@ -178,8 +178,8 @@ def paymentrapi (request):
                 autos.status = payment["status"]
                 autos.userWhoPayed = str(User.objects.get(username=request.user.username))
                 autos.save()
-        except KeyError as e:
-            return redirect('/')
+        else:
+                return redirect('/')
     return render(request, 'paginas/payment_rapi.html', {"status": payment["status"], "description": payment["description"], "payment_method": payment["payment_method_id"], "price": payment["transaction_amount"], "url": payment["transaction_details"]["external_resource_url"]})
 
 # Parte Usuarios - Registro
